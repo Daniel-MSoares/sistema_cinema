@@ -14,7 +14,15 @@ nav.navbar-transparente{
 .invisible{
     display: none;
 }
-
+span.text-logo{
+    color: rgb(250, 250, 250);
+    border-top:2px solid red;
+    border-bottom:2px solid red;
+    font-size: 2em;
+}
+.logo:hover{
+    text-decoration: none;
+}
 
 .navbar-light .navbar-nav .nav-link{
 	color: red;
@@ -58,4 +66,18 @@ footer{
     background: #000;
     color: azure;
     text-align: center;
+}
+/* estilo pagina admin */
+
+.cadastroFilme{
+   border: 2px solid red;
+   
+   margin: 0 auto;
+   color:red;
+   font-size: large;
+}
+
+.table{
+    color: white;
+    font-size: 18px;
 }

@@ -2,64 +2,121 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L&D CINE/ADMIN</title>
-  <script src="../js/app.js"></script>
-  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L&D CINE!</title>
+    <!-- Bootstrap 4-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- fontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- js -->
+    <script src="../js/app.js"></script>
 </head>
 
-<body>
-  <header>
-    <h1>-L&D CINE-</h1>
-  </header>
-  <main>
-    <div class="title">
-      <h2>adicionar filme</h1>
-      
-    </div>
-    <div class="card">
+<body class='page' onload="filme.listarFilmesAdmin()">
 
-      <form>
-      <div class="lineInput">
-        <label >Nome do filme:</label>
-        <input type="text" id="nomeFilme" placeholder="nome do filme">
-      </div>
-      <div class="lineInput">
-        <label >sinopse:</label>
-        <input type="text" id="sinopseFilme" placeholder="descrição">
-      </div>
-      <div class="lineInput">
-        <label >classificação indicativa:</label>
-        <input type="text" id="classificacaoFilme" placeholder="nome do produto">
-      </div>
-      <div class="lineInput">
-        <label >Gênero:</label>
-        <input type="text" id="generoFilme" placeholder="genero do filme">
-      </div>
-      <div class="lineInput">
-        <label >Preço do ingresso:</label>
-        <input type="number" id="precoIngresso" placeholder="preço do produto">
-      </div>
-      <div class="lineInput">
-        <label >Horario da sessão:</label>
-        <input type="text" id="horarioSessao" placeholder="preço do produto">
-      </div>
-      <div class="lineInput">
-        <label >data da sessão:</label>
-        <input type="date" id="dataSessao" placeholder="preço do produto">
-      </div>
-      <div class="lineInput">
-        <label >caminho da imagem:</label>
-        <input type="text" id="imgFilme" placeholder="../img/img.jpg">
-      </div>
-      </form>
-      <button id='btnSave' onclick="filme.adicionar()">Salvar</button>
-      
-    </div>
-  </main>
-  <a href="../index.html">voltar</a>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light  navbar-transparente topo">
+            <div class="container">
+                <a href="../index.html" class="logo">
+                    <img class="logo" src="../img/logo.jpg" width="70" alt="L&D CINE!"><span class='text-logo'>L&D
+                        CINE!</span>
+                </a>
+
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">
+                    <i class="fas fa-bars text-white"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="nav-principal">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="../index.html" class="mr-2 nav-link"><i class="fas fa-home"> </i>
+                                HOME</a></li>
+                        <li class="nav-item"><a href="pages/usuario.html" class="mr-2 nav-link"><i class="far fa-user">
+                                </i> USUÁRIO</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="main">
+        <div class="container">
+            <h2 class="text-white text-center">ADICIONAR NOVO TÍTULO</h2>
+            <div class="cadastroFilme">
+                <form>
+                    <div class="lineInput">
+                        <label>Nome do filme:</label><br>
+                        <input type="text" id="nomeFilme" placeholder="nome do filme">
+                    </div>
+                    <div class="lineInput">
+                        <label>sinopse:</label><br>
+                        <input type="text" id="sinopseFilme" placeholder="descrição">
+                    </div>
+                    <div class="lineInput">
+                        <label>classificação indicativa:</label><br>
+                        <input type="text" id="classificacaoFilme" placeholder="nome do produto">
+                    </div>
+                    <div class="lineInput">
+                        <label>Gênero:</label>
+                        <input type="text" id="generoFilme" placeholder="genero do filme">
+                    
+                        <label>Preço do ingresso:</label>
+                        <input type="number" id="precoIngresso" placeholder="preço do produto">
+                    </div>
+                    <div class="lineInput">
+                        <label>Horario da sessão:</label>
+                        <input type="text" id="horarioSessao" placeholder="preço do produto">
+
+                        <label>data da sessão:</label>
+                        <input type="date" id="dataSessao" placeholder="preço do produto">
+                    </div>
+                    <div class="lineInput">
+                        <label>caminho da imagem:</label>
+                        <input type="text" id="imgFilme" placeholder="../img/img.jpg">
+                    </div>
+                </form>
+                <button class="btn btn-success" id='btnSave' onclick="filme.adicionar()">Salvar</button>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h2 class="text-white text-center">LISTA DE FILMES</h2>
+            <table border=1 class="table">
+                <thead>
+                  <th>ID</th>
+                  <th>Titulo</th>
+                  <th> </th>
+                </thead>
+                <tbody id='tbody'>
+         
+                  
+                </tbody> 
+             </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
+
+
+<div>
