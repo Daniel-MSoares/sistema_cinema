@@ -67,6 +67,7 @@ class Filme{
                let dadoFilme=JSON.stringify(filme)
                let link=document.createElement('a');
                link.href='pages/ingresso.html?obj='+dadoFilme;
+               
                link.innerHTML=`<img class="cartaz" src="${filme.imgFilme}" alt=${filme.nomeFilme}">`
                catalogo.appendChild(link)
            });
