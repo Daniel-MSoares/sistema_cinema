@@ -1,6 +1,6 @@
 class Filme{
     constructor(){
-        this.id=7
+        this.id=1
         this.bdLocalStorage=JSON.parse(localStorage.getItem('filmes'))
         this.filmes= this.bdLocalStorage !== null ? this.bdLocalStorage : []
     }
@@ -28,7 +28,9 @@ class Filme{
       objFilme.precoIngresso=document.getElementById('precoIngresso').value;
       objFilme.horarioSessao=document.getElementById('horarioSessao').value;
       objFilme.dataSessao=document.getElementById('dataSessao').value;
-      objFilme.imgFilme=document.getElementById('imgFilme').value;
+      let textoCaminho=JSON.stringify(document.getElementById('imgFilme').value);
+      textoCaminho='img/'+textoCaminho.slice(15)
+      objFilme.imgFilme= textoCaminho;
       return objFilme
     }
 
@@ -67,7 +69,6 @@ class Filme{
                let dadoFilme=JSON.stringify(filme)
                let link=document.createElement('a');
                link.href='pages/ingresso.html?obj='+dadoFilme;
-               
                link.innerHTML=`<img class="cartaz" src="${filme.imgFilme}" alt=${filme.nomeFilme}">`
                catalogo.appendChild(link)
            });
