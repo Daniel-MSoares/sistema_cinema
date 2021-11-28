@@ -1,0 +1,18 @@
+body{
+    background: url('../img/bg-home.jpg')no-repeat;
+    background-size: 100%;
+    background-position-y: -25px;
+}
+nav.navbar-transparente{
+	background: rgba(0, 0, 0,0.7);
+	padding: 10px 0;
+}
+.invisible{
+    display: none;
+}
+.navbar-light .navbar-nav .nav-link{
+	color: red;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+	color:white;
+}
