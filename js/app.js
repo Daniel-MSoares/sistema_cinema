@@ -1,83 +1,19 @@
 class Filme{
     constructor(){
         this.id=7
-        this.filmes=[
-            {
-                classificacao: "16",
-                dataSessao: "11/12/2021",
-                generoFilme: "ação",
-                horarioSessao: "15:00",
-                id: 1,
-                imgFilme: "img/eternos.jpg",
-                nomeFilme: "Eternos",
-                precoIngresso: "30.99",
-                sinopse: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos exercitationem consequatur placeat dolor consequuntur! Quos, et quae facere aperiam facilis mollitia, exercitationem nostrum blanditiis officiis architecto natus illo suscipit hic?",
-            },
-            {
-                classificacao: "L",
-                dataSessao: "28/11/2021",
-                generoFilme: "infantil,aventura",
-                horarioSessao: "8:00",
-                id: 2,
-                imgFilme: "img/encanto.jpg",
-                nomeFilme: "Encanto",
-                precoIngresso: "10.00",
-                sinopse: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos exercitationem consequatur placeat dolor consequuntur! Quos, et quae facere aperiam facilis mollitia, exercitationem nostrum blanditiis officiis architecto natus illo suscipit hic?",
-            },
-            {
-                classificacao: "16",
-                dataSessao: "11/12/2021",
-                generoFilme: "ação,fantasia",
-                horarioSessao: "15:00",
-                id: 3,
-                imgFilme: "img/duna.jpg",
-                nomeFilme: "Duna",
-                precoIngresso: "20.00",
-                sinopse: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos exercitationem consequatur placeat dolor consequuntur! Quos, et quae facere aperiam facilis mollitia, exercitationem nostrum blanditiis officiis architecto natus illo suscipit hic?",
-            },
-            {
-                classificacao: "16",
-                dataSessao: "11/12/2021",
-                generoFilme: "ação",
-                horarioSessao: "15:00",
-                id: 4,
-                imgFilme: "img/venon.jpg",
-                nomeFilme: "Venon:tempo de carneficina",
-                precoIngresso: "45.00",
-                sinopse: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos exercitationem consequatur placeat dolor consequuntur! Quos, et quae facere aperiam facilis mollitia, exercitationem nostrum blanditiis officiis architecto natus illo suscipit hic?",
-            },
-            {
-                classificacao: "14",
-                dataSessao: "11/12/2021",
-                generoFilme: "ação,fantasia",
-                horarioSessao: "15:00",
-                id: 5,
-                imgFilme: "img/senhordosaneis.jpg",
-                nomeFilme: "O Senhor dos aneis:a sociedade do anel versão estendida",
-                precoIngresso: "20.00",
-                sinopse: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos exercitationem consequatur placeat dolor consequuntur! Quos, et quae facere aperiam facilis mollitia, exercitationem nostrum blanditiis officiis architecto natus illo suscipit hic?",
-            },
-            {
-                classificacao: "16",
-                dataSessao: "12/10/2021",
-                generoFilme: "Drama",
-                horarioSessao: "15:00",
-                id: 6,
-                imgFilme: "img/marighella.jpg",
-                nomeFilme: "Marighella",
-                precoIngresso: "20.00",
-                sinopse: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos exercitationem consequatur placeat dolor consequuntur! Quos, et quae facere aperiam facilis mollitia, exercitationem nostrum blanditiis officiis architecto natus illo suscipit hic?",
-            }
-
-        ]
+        this.bdLocalStorage=JSON.parse(localStorage.getItem('filmes'))
+        this.filmes= this.bdLocalStorage !== null ? this.bdLocalStorage : []
+    }
+    atualizaLocalStorage(){
+        localStorage.setItem('filmes',JSON.stringify(this.filmes))
     }
     adicionar(){
       let filme=this.lerDados();
       this.filmes.push(filme);
       this.id++;
-      
-      this.listarFilmesAdmin()
-      this.limparCampos()
+      this.atualizaLocalStorage();
+      this.listarFilmesAdmin();
+      this.limparCampos();
       
       
     }
@@ -117,7 +53,9 @@ class Filme{
             let td_id=tr.insertCell().innerText=filme.id;
             let td_nome=tr.insertCell().innerText=filme.nomeFilme;
             let td_acao=tr.insertCell();
-            td_acao.innerHTML=`<button ><i class='fas fa-edit'></i>Editar</button>||<button onClick='filme.excluirFilme(${filme.id})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button> ||=<button ><i class='fas fa-info-circle'></i><a href='ingresso.html?obj=${dadoFilme}'>detalhes</a></button>`
+            td_acao.innerHTML=`<button ><i class='fas fa-edit'></i>Editar</button>||
+            <button onClick='filme.excluirFilme(${filme.id})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button> ||
+            <button ><i class='fas fa-info-circle'></i><a href='ingresso.html?obj=${dadoFilme}'>detalhes</a></button>`
            });
            
        }
@@ -129,7 +67,7 @@ class Filme{
                let dadoFilme=JSON.stringify(filme)
                let link=document.createElement('a');
                link.href='pages/ingresso.html?obj='+dadoFilme;
-               link.innerHTML='<img class="cartaz" src="'+filme.imgFilme+'">'
+               link.innerHTML=`<img class="cartaz" src="${filme.imgFilme}" alt=${filme.nomeFilme}">`
                catalogo.appendChild(link)
            });
          
@@ -168,6 +106,7 @@ class Filme{
                  this.filmes.splice(i,1)
              }
         }
+       this.atualizaLocalStorage();
        this.listarFilmesAdmin();
        
        console.log(this.filmes)
