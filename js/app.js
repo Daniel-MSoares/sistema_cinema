@@ -28,8 +28,12 @@ class Filme{
       objFilme.precoIngresso=document.getElementById('precoIngresso').value;
       objFilme.horarioSessao=document.getElementById('horarioSessao').value;
       objFilme.dataSessao=document.getElementById('dataSessao').value;
+      
+      //recebe o caminho passado pelo input tipo file e extrai o nome da imagem que está na pasta img
       let textoCaminho=JSON.stringify(document.getElementById('imgFilme').value);
       textoCaminho='img/'+textoCaminho.slice(15)
+      textoCaminho=textoCaminho.replace(/"/,'')
+
       objFilme.imgFilme= textoCaminho;
       return objFilme
     }
@@ -69,6 +73,7 @@ class Filme{
                let dadoFilme=JSON.stringify(filme)
                let link=document.createElement('a');
                link.href='pages/ingresso.html?obj='+dadoFilme;
+               console.log(filme.imgFilme)
                link.innerHTML=`<img class="cartaz" src="${filme.imgFilme}" alt=${filme.nomeFilme}">`
                catalogo.appendChild(link)
            });
