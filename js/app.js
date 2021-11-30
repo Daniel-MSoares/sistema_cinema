@@ -1,6 +1,7 @@
 class Filme{
     constructor(){
         this.id=1
+        this.editar=null;
         this.lsFilmes=JSON.parse(localStorage.getItem('filmes'))
         this.lsFilmesDestaque=JSON.parse(localStorage.getItem('filmesDestaque'))
         this.filmes= this.lsFilmes !== null ? this.lsFilmes : []
@@ -44,10 +45,7 @@ class Filme{
       objFilme.sinopse=document.getElementById('sinopseFilme').value;
       objFilme.classificacao=document.getElementById('classificacaoFilme').value;
       objFilme.generoFilme=document.getElementById('generoFilme').value;
-      objFilme.precoIngresso=document.getElementById('precoIngresso').value;
-      objFilme.horarioSessao=document.getElementById('horarioSessao').value;
-      objFilme.dataSessao=document.getElementById('dataSessao').value;
-      
+       
       //recebe o caminho passado pelo input tipo file e extrai o nome da imagem que está na pasta img
       let textoCaminho=JSON.stringify(document.getElementById('imgFilme').value);
       textoCaminho='img/'+textoCaminho.slice(15)
@@ -63,9 +61,6 @@ class Filme{
         document.getElementById('sinopseFilme').value=''
         document.getElementById('classificacaoFilme').value=''
         document.getElementById('generoFilme').value=''
-        document.getElementById('precoIngresso').value=''
-        document.getElementById('horarioSessao').value=''
-        document.getElementById('dataSessao').value=''
         document.getElementById('imgFilme').value=''
         
       }
@@ -85,7 +80,7 @@ class Filme{
             let td_id=tr.insertCell().innerText=filme.id;
             let td_nome=tr.insertCell().innerText=filme.nomeFilme;
             let td_acao=tr.insertCell();
-            td_acao.innerHTML=`<button ><i class='fas fa-edit'></i>Editar</button>||
+            td_acao.innerHTML=`<button onClick='filme.preparaEditar(${dadoFilme})' ><i class='fas fa-edit'></i>Editar</button>||
             <button onClick='filme.excluirFilme(${filme.id})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button> ||
             <button ><i class='fas fa-info-circle'></i><a href='ingresso.html?obj=${dadoFilme}'>detalhes</a></button>`
            });
@@ -105,6 +100,12 @@ class Filme{
         let listaFilmes=this.filmes
         let listaFilmesDestaque=this.filmesDestaque
         let catalogo=document.getElementById('catalogo')
+        
+         if(listaFilmes.length==0){
+             document.getElementById("sessaoDestaque").innerText='nenhum filme foi adicionado';
+             document.getElementById("sessaoCartaz").classList.add('invisible');
+             
+        }
         let destaques=document.getElementById('destaques')
 //lista os  destaques
         listaFilmesDestaque.forEach(destaque=>{
@@ -138,9 +139,6 @@ class Filme{
         let sinopse=document.getElementById('sinopse')
         let classificacao=document.getElementById('classificacao')
         let genero=document.getElementById('genero')
-        let preco=document.getElementById('preco')
-        let horario=document.getElementById('horario')
-        let data=document.getElementById('data')
         let imgFilme=document.getElementById('cartazFilme')
         
         imgFilme.src='../'+dadoFilme.imgFilme;
@@ -148,11 +146,21 @@ class Filme{
         sinopse.innerText=dadoFilme.sinopse;
         classificacao.innerText=dadoFilme.classificacao;
         genero.innerText=dadoFilme.generoFilme;
-        preco.innerText=dadoFilme.precoIngresso;
-        horario.innerText=dadoFilme.horarioSessao;
-        data.innerText=dadoFilme.dataSessao;
+         
     
     
+    }
+    
+    preparaEditar(dados){
+        this.editar=dados.id;
+        console.log(dados)
+        document.getElementById('nomeFilme').value=dados.nomeFilme;
+          
+    }
+
+
+    editarFilme(){
+
     }
 
     excluirFilme(id){
