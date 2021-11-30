@@ -179,6 +179,14 @@ class Filme{
         this.listarFilmesAdmin();
     }
 }
+
+class ingreesso{
+
+}
+
+class usuario{
+    
+}
 var filme= new Filme
 
 
