@@ -50,8 +50,13 @@
             <div class="cadastroFilme">
                 <form>
                     <div class="lineInput">
-                        <label>Nome do filme:</label><br>
+                        <label>Nome do filme:</label>
                         <input type="text" id="nomeFilme" placeholder="nome do filme">
+                        
+                        <label for='destacar'>Destaque:</label>
+                        <input onClick='filme.verificaDestaques()'type="checkbox" id="destacar" nome='destacar'>
+                        
+
                     </div>
                     <div class="lineInput">
                         <label>sinopse:</label><br>
@@ -66,14 +71,14 @@
                         <input type="text" id="generoFilme" placeholder="genero do filme">
                     
                         <label>Preço do ingresso:</label>
-                        <input type="number" id="precoIngresso" placeholder="preço do produto">
+                        <input type="text" id="precoIngresso" placeholder="preço do ingresso">
                     </div>
                     <div class="lineInput">
                         <label>Horario da sessão:</label>
-                        <input type="text" id="horarioSessao" placeholder="preço do produto">
+                        <input type="text" id="horarioSessao" placeholder="horário">
 
                         <label>data da sessão:</label>
-                        <input type="date" id="dataSessao" placeholder="preço do produto">
+                        <input type="date" id="dataSessao">
                     </div>
                     <div class="lineInput">
                         <label>Selecione o cartaz:</label>
@@ -85,19 +90,47 @@
         </div>
     </section>
     <section>
-        <div class="container">
-            <h2 class="text-white text-center">LISTA DE FILMES</h2>
-            <table border=1 class="table">
-                <thead>
-                  <th>ID</th>
-                  <th>Titulo</th>
-                  <th> </th>
-                </thead>
-                <tbody id='tbody'>
-         
+        
+        <script>
+              function mostrarFilmes(){
+                  document.getElementById('tabela_filmes').classList.remove('invisible')
+                  document.getElementById('tabela_Destaque').classList.add('invisible')
+              }
+              function mostrarDestaques(){
+                  document.getElementById('tabela_filmes').classList.add('invisible')
+                  document.getElementById('tabela_Destaque').classList.remove('invisible')
                   
-                </tbody> 
-             </table>
+              }
+
+        </script>
+        
+        <div class="container">
+            <button onClick='mostrarFilmes()' class="btn btn-primary mr-2 mt-2">LISTA FILMES</button>
+            <button onClick='mostrarDestaques()' class="btn btn-primary mr-2 mt-2">LISTA DESTAQUES</button>
+            <div id='tabela_Destaque' class="invisible">
+                <h2 class="text-white text-center">LISTA DE DESTAQUES</h2>
+                <table border=1 class="table" style="color: yellow;" >
+                    <thead>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th> </th>
+                    </thead>
+                    <tbody id='tbDestaque'>
+                    </tbody> 
+                </table>
+            </div>
+            <div id='tabela_filmes' class="invisible">
+                <h2 class="text-white text-center">LISTA DE FILMES</h2>
+                <table border=1 class="table" >
+                    <thead>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th> </th>
+                    </thead>
+                    <tbody id='tbody'>
+                    </tbody> 
+                </table>
+            </div>
             </div>
         </div>
     </section>
