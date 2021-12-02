@@ -277,7 +277,10 @@ class Filme{
     }
 }
 
-var filme= new Filme
+const filme= new Filme
+class Sessao{
 
+}
+const sessao=new Sessao
 
 
