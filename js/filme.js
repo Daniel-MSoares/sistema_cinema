@@ -17,9 +17,10 @@ class Filme{
         if(this.validaCampos(filme)){
              if(this.editar==null){
                   this.adicionar(filme)
+                  alert('Filme cadastrado com sucesso')   
              }else{
                   this.atualizarFilme(this.editar,filme)
-                  
+                  alert('Filme Atualizado')   
             }
         }    
     }
@@ -61,7 +62,7 @@ class Filme{
       if(document.getElementById('imgFilme').files.length!==0){
           objFilme.imgFilme='img/'+document.getElementById('imgFilme').files[0].name;
       }else{
-        objFilme.imgFilme='img/'
+          objFilme.imgFilme='img/'
       }
       
       
@@ -187,7 +188,7 @@ class Filme{
     lerDadosFilme(){
         const urlParams = new URLSearchParams(window.location.search);
         const dadoFilme = JSON.parse(urlParams.get('obj'));
-        console.log(dadoFilme)
+        
         
         let nomeFilme=document.getElementById('nomeFilme')
         let sinopse=document.getElementById('sinopse')
@@ -207,7 +208,6 @@ class Filme{
     
     preparaAtualizar(dados){
         this.editar=dados.id;
-        console.log(dados)
         document.getElementById('nomeFilme').value=dados.nomeFilme;
         document.getElementById('btnSave').innerText='Atualizar';
         document.getElementById('sinopseFilme').value=dados.sinopse;
@@ -277,13 +277,6 @@ class Filme{
     }
 }
 
-class ingreesso{
-
-}
-
-class usuario{
-    
-}
 var filme= new Filme
 
 
