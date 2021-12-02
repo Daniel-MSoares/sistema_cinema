@@ -58,14 +58,13 @@ class Filme{
       objFilme.sinopse=document.getElementById('sinopseFilme').value;
       objFilme.classificacao=document.getElementById('classificacaoFilme').value;
       objFilme.generoFilme=document.getElementById('generoFilme').value;
-       
-      //recebe o caminho passado pelo input tipo file e extrai o nome da imagem que está na pasta
-      console.log(document.getElementById('imgFilme').value)
-      let textoCaminho=JSON.stringify(document.getElementById('imgFilme').value);
-      textoCaminho='img/'+textoCaminho.slice(15)
-      textoCaminho=textoCaminho.replace(/"/,'')
-
-      objFilme.imgFilme= textoCaminho;
+      if(document.getElementById('imgFilme').files.length!==0){
+          objFilme.imgFilme='img/'+document.getElementById('imgFilme').files[0].name;
+      }else{
+        objFilme.imgFilme='img/'
+      }
+      
+      
       return objFilme
     }
 
@@ -88,8 +87,6 @@ class Filme{
         if(filme.imgFilme==='img/'){
            msg+='-selecione uma imagem para o filme- \n'
         }
-        
-        
 
         if(msg!==''){
             alert(msg);
@@ -113,8 +110,9 @@ class Filme{
 
         document.getElementById('destacar').classList.remove('invisible');
         document.getElementById('labelDestacar').classList.remove('invisible');
-        document.getElementById('labelImgFilme').innerText="Selecione a imagem do filme:"
+        document.getElementById('labelImgFilme').innerText="Selecione a imagem do filme"
         document.getElementById('tituloForm').innerText='ADICIONAR NOVO TÍTULO';
+
         
         this.editar=null
     
@@ -158,6 +156,7 @@ class Filme{
         
          if(listaFilmes.length==0){
              document.getElementById("sessaoDestaque").innerText='nenhum filme foi adicionado';
+             
              document.getElementById("sessaoCartaz").classList.add('invisible');
              
         }
@@ -167,7 +166,7 @@ class Filme{
                let dadoFilme=JSON.stringify(destaque)
                let link=document.createElement('a');
                link.href='pages/ingresso.html?obj='+dadoFilme;
-               link.innerHTML=`<img class="cartaz" src="${destaque.imgFilme}" alt=${destaque.nomeFilme}">`
+               link.innerHTML=`<img class="cartaz cartaz-destaque" src="${destaque.imgFilme}" alt=${destaque.nomeFilme}">`
                destaques.appendChild(link)
                
         });

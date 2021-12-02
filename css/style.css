@@ -58,6 +58,11 @@ span.text-logo{
     margin-bottom: 10px;
     transition: .5s;
 }
+.cartaz-destaque{
+    border:3px solid goldenrod;
+    width: 210px;
+    margin-bottom:15px;
+}
 .cartaz:hover{
     border:3px solid rgb(248, 248, 248);
     width: 230px;
