@@ -46,16 +46,16 @@
 
     <section class="main">
         <div class="container">
-            <h2 class="text-white text-center">ADICIONAR NOVO TÍTULO</h2>
+            <h2 class="text-white text-center" id="tituloForm">ADICIONAR NOVO TÍTULO</h2>
             <div class="cadastroFilme">
                 <form>
                     <div class="lineInput">
                         <label>Nome do filme:</label>
                         <input type="text" id="nomeFilme" placeholder="nome do filme">
                         
-                        <label for='destacar'>Destaque:</label>
-                        <input onClick='filme.verificaDestaques()'type="checkbox" id="destacar" nome='destacar'>
                         
+                        <input onClick='filme.verificaDestaques()'type="checkbox" id="destacar" nome='destacar'>
+                        <label for='destacar' id="labelDestacar">Adicionar aos Destaque</label>
 
                     </div>
                     <div class="lineInput">
@@ -65,18 +65,38 @@
                     </div>
                     <div class="lineInput">
                         <label>classificação indicativa:</label>
-                        <input class="input-pequeno" type="text" id="classificacaoFilme">
+                        <select type="text" id="classificacaoFilme">
+                             <option selected  value="">-selecione a classificação-</option>
+                             <option value="L">Livre</option>
+                             <option value="10+">10+</option>
+                             <option value="12+">12+</option>
+                             <option value="14+">14+</option>
+                             <option value="16+">16+</option>
+                             <option value="18+">18+</option>
+                        </select>
                     </div>
                     <div class="lineInput">
                         <label>Gênero:</label>
-                        <input type="text" id="generoFilme" placeholder="genero do filme">
+                        <select type="text" id="generoFilme" placeholder='selecione a classificação'>
+                             <option selected  value="">-selecione o gênero-</option>
+                             <option value="ação/aventura">ação/aventura</option>
+                             <option value="drama">drama</option>
+                             <option value="fantasia">fantasia</option>
+                             <option value="suspense/terror">suspense/terror</option>
+                             <option value="ficção científica">ficção científica</option>
+                             <option value="comédia">comédia</option>
+                             <option value="romance">romance</option>
+                             
+
+                        </select>
                     </div>
                     <div class="lineInput">
-                        <label>Selecione a imagem do filme:</label>
+                        <label id="labelImgFilme">Selecione a imagem do filme:</label>
                         <input type="file" id="imgFilme" placeholder="img/img.jpg">
                     </div>
                 </form>
-                <button class="btn btn-success" id='btnSave' onclick="filme.adicionar()">Salvar</button>
+                <button class="btn btn-success" id='btnSave' onclick="filme.salvar()">Salvar</button>
+                <button class="btn btn-warning" id='btnSave' onclick="filme.limparCampos()">Cancelar</button>
             </div>
         </div>
     </section>
