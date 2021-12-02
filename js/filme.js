@@ -279,7 +279,9 @@ class Filme{
 
 const filme= new Filme
 class Sessao{
-
+     constructor(){
+         his.id=1
+     }
 }
 const sessao=new Sessao
 
