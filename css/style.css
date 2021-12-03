@@ -72,6 +72,27 @@ footer{
     color: azure;
     text-align: center;
 }
+
+/* estilo pagina info filme */
+
+.btnSessao{
+    font-size: small;
+}
+.btnSessao:hover{
+    font-size:medium;
+    background-color: rgba(0, 0, 0,0.9);
+    border:2px solid red ;
+}
+
+
+
+
+
+
+
+
+
+
 /* estilo pagina admin */
 
 .cadastroFilme{

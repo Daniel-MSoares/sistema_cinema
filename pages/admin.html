@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- js -->
     <script src="../js/filme.js"></script>
+    <script src="../js/sessao.js"></script>
 </head>
 
 <body class='page' onload="filme.listarFilmesAdmin()">
@@ -46,8 +47,32 @@
 
     <section class="main">
         <div class="container">
-            <h2 class="text-white text-center" id="tituloForm">ADICIONAR NOVO TÍTULO</h2>
-            <div class="cadastroFilme">
+            <script>
+                function mostraForm(form){
+                    if(form==='Filme'){
+                        document.getElementById('tituloForm').innerText='Adicionar Novo Filme'
+                        document.getElementById('formSessao').classList.add('invisible')
+                        document.getElementById("btn-formF").classList.add('invisible')
+                        document.getElementById('form'+form).classList.remove('invisible')
+                        document.getElementById("btn-formS").classList.remove('invisible')
+                        
+                    }else{
+                        document.getElementById('tituloForm').innerText='Adicionar Nova Sessão'
+                        document.getElementById('formFilme').classList.add('invisible')
+                        document.getElementById("btn-formF").classList.remove('invisible')
+                        document.getElementById("btn-formS").classList.add('invisible')
+                        document.getElementById('form'+form).classList.remove('invisible')
+                        
+                    }
+                     
+                }
+
+            </script>
+            <button class="btn btn-success invisible" id="btn-formF" onClick="mostraForm('Filme')">+ADD FILME</button>
+            <button class="btn btn-success" id="btn-formS" onClick="mostraForm('Sessao')">+ADD SESSÃO</button>
+
+            <h2 class="text-white text-center" id="tituloForm">Adicionar Novo Filme</h2>
+            <div class="cadastroFilme " id="formFilme">
                 <form>
                     <div class="lineInput">
                         <label>Nome do filme:</label>
@@ -98,6 +123,51 @@
                 <button class="btn btn-success" id='btnSave' onclick="filme.salvar()">Salvar</button>
                 <button class="btn btn-warning" id='btnSave' onclick="filme.limparCampos()">Cancelar</button>
             </div>
+            <div class="cadastroFilme invisible" id="formSessao">
+               <form>
+                <div>
+                    <script></script>
+                    <label>Filme da Sessão:</label>
+                    <select id="filmeSessao">
+                        <option selected  value="">-selecione o filme-</option>
+                    </select><br>
+ 
+                    <label>Horário da Sessão:</label>
+                    <select id="horarioSessao">
+                        <option selected  value="">-selecione o Horário-</option>
+                        <option   value="06:00">sessão 1(06:00h)</option>
+                        <option   value="09:00">sessão 2(09:00h)</option>
+                        <option   value="13:00">sessão 3(13:00h)</option>
+                        <option   value="16:00">sessão 4(16:00h)</option>
+                        <option   value="19:00">sessão 5(19:00h)</option>
+                        <option   value="21:30">sessão 6(21:30h)</option>
+                    </select><br>
+                    <label>Horário da Sessão:</label>
+                    <input type="date" id="dataSessao"><br>
+
+                    <label>Sala:</label>
+
+                    <select id="salaSessao">
+                        <option selected  value="">-selecione a Sala-</option>
+                        <option  value="Sala 1">Sala 1</option>
+                        <option  value="Sala 2">Sala 2</option>
+                        <option  value="Sala 3">Sala 3</option>
+                    </select><br>
+                    
+                    <label>Tipo da Sessão:</label>
+                    <select id="tipoSessao">
+                        <option selected  value="">-selecione o tipo da seção-</option>
+                        <option  value="dub">Dublado</option>
+                        <option  value="leg">Legendado</option>
+                    </select>
+                    
+                    <label>Valor do ingresso:</label>
+                    <input type='number' id="precoIngresso">
+                </div>
+              </form>
+              <button onclick="sessao.salvar()" class="btn btn-success">Registrar sessão</button>
+              <button onclick="sessao.limpaCampos()" class="btn btn-warning">Cancelar</button>
+            </div>
         </div>
     </section>
     <section>
@@ -106,11 +176,19 @@
               function mostrarFilmes(){
                   document.getElementById('tabela_filmes').classList.remove('invisible')
                   document.getElementById('tabela_Destaque').classList.add('invisible')
+                  document.getElementById('tabela_Sessoes').classList.add('invisible')
               }
               function mostrarDestaques(){
                   document.getElementById('tabela_filmes').classList.add('invisible')
                   document.getElementById('tabela_Destaque').classList.remove('invisible')
-                  
+                  document.getElementById('tabela_Sessoes').classList.add('invisible')
+              }
+              function mostrarSessoes(){
+                  document.getElementById('tabela_filmes').classList.add('invisible')
+                  document.getElementById('tabela_Destaque').classList.add('invisible')
+                  document.getElementById('tabela_Sessoes').classList.remove('invisible')
+    
+                  sessao.listarSessoesAdmin()
               }
 
         </script>
@@ -118,6 +196,8 @@
         <div class="container">
             <button onClick='mostrarFilmes()' class="btn btn-primary mr-2 mt-2">LISTA FILMES</button>
             <button onClick='mostrarDestaques()' class="btn btn-primary mr-2 mt-2">LISTA DESTAQUES</button>
+            <button onClick='mostrarSessoes()' class="btn btn-primary mr-2 mt-2">TODAS AS SESSÕES</button>
+            
             <div id='tabela_Destaque' class="invisible">
                 <h2 class="text-white text-center">LISTA DE DESTAQUES</h2>
                 <table border=1 class="table" style="color: yellow;" >
@@ -142,6 +222,22 @@
                     </tbody> 
                 </table>
             </div>
+            <div id='tabela_Sessoes' class="invisible">
+                <h2 class="text-white text-center">Sessões</h2>
+                <table border=1 class="table" style="color: rgb(250, 250, 250);">
+                    <thead>
+                        <th>ID</th>
+                        <th>filme</th>
+                        <th>Horário</th>
+                        <th>data</th>
+                        <th>sala</th>
+                        <th>tipo</th>
+                        <th>V.ingresso</th>
+                        <th></th>
+                    </thead>
+                    <tbody id='tbSessoes'>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>

@@ -2,7 +2,8 @@ class Filme{
     constructor(){
         this.lsFilmes=JSON.parse(localStorage.getItem('filmes'))
         this.lsFilmesDestaque=JSON.parse(localStorage.getItem('filmesDestaque'))
-        this.id=this.lsFilmes !== null ? (this.lsFilmes.length+1) : 1
+        
+        this.id= this.lsFilmes.length > 0 ? (this.lsFilmes[this.lsFilmes.length-1].id)+1 : 1
         this.editar=null;
         
         this.filmes= this.lsFilmes !== null ? this.lsFilmes : []
@@ -14,7 +15,7 @@ class Filme{
     }
     salvar(){
         let filme=this.lerDados();
-        if(this.validaCampos(filme)){
+        if(this.validarCampos(filme)){
              if(this.editar==null){
                   this.adicionar(filme)
                   alert('Filme cadastrado com sucesso')   
@@ -70,7 +71,7 @@ class Filme{
     }
 
 
-    validaCampos(filme){
+    validarCampos(filme){
         let msg=''
         if(filme.nomeFilme===''){
             msg+='-Informe o nome do filme- \n'
@@ -128,7 +129,7 @@ class Filme{
         tbDestaque.innerText='';
 
 
-        listaFilmes.forEach(filme => {
+          listaFilmes.forEach(filme => {
             let dadoFilme=JSON.stringify(filme);
             let tr=tbody.insertRow();
             let td_id=tr.insertCell().innerText=filme.id;
@@ -136,17 +137,37 @@ class Filme{
             let td_acao=tr.insertCell();
             td_acao.innerHTML=`<button onClick='filme.preparaAtualizar(${dadoFilme})' ><i class='fas fa-edit'></i>Editar</button>||
             <button onClick='filme.excluirFilme(${filme.id})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button> ||
-            <button ><i class='fas fa-info-circle'></i><a href='ingresso.html?obj=${dadoFilme}'>detalhes</a></button>`
+            <button ><i class='fas fa-info-circle'></i><a href='infoFilme.html?obj=${dadoFilme}'>detalhes</a></button>`
            });
         // cria tabela de Destaques
         
-        listaDestaques.forEach(destaque => {
+            listaDestaques.forEach(destaque => {
             let tr=tbDestaque.insertRow();
             let td_id=tr.insertCell().innerText=destaque.id;
             let td_nome=tr.insertCell().innerText=destaque.nomeFilme;
             let td_acao=tr.insertCell();
             td_acao.innerHTML=`<button onClick='filme.excluirDestaque(${destaque.id})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button>`
            });
+
+         //insere os valores do select para o form sessao nome filme
+            listaFilmes.forEach(filme => {
+            document.getElementById('filmeSessao').innerHTML=''
+            let optionSelecionada=document.createElement('option')
+            optionSelecionada.selected=true
+            optionSelecionada.disabled=true
+            optionSelecionada.innerHTML="-selecione o filme-"
+            optionSelecionada.value=''
+            this.filmes.forEach(filme => { 
+                 let option=document.createElement('option')
+                 option.value=filme.nomeFilme
+                 option.innerText=filme.nomeFilme
+                 document.getElementById('filmeSessao').appendChild(optionSelecionada)
+                 document.getElementById('filmeSessao').appendChild(option)
+            });
+           
+            
+           });
+
             
        }
 
@@ -166,7 +187,7 @@ class Filme{
         listaFilmesDestaque.forEach(destaque=>{
                let dadoFilme=JSON.stringify(destaque)
                let link=document.createElement('a');
-               link.href='pages/ingresso.html?obj='+dadoFilme;
+               link.href='pages/infoFilme.html?obj='+dadoFilme;
                link.innerHTML=`<img class="cartaz cartaz-destaque" src="${destaque.imgFilme}" alt=${destaque.nomeFilme}">`
                destaques.appendChild(link)
                
@@ -178,7 +199,7 @@ class Filme{
             listaFilmes.forEach(filme => {
                let dadoFilme=JSON.stringify(filme)
                let link=document.createElement('a');
-               link.href='pages/ingresso.html?obj='+dadoFilme;
+               link.href='pages/infoFilme.html?obj='+dadoFilme;
                link.innerHTML=`<img class="cartaz" src="${filme.imgFilme}" alt=${filme.nomeFilme}">`
                catalogo.appendChild(link)
            });
@@ -195,15 +216,15 @@ class Filme{
         let classificacao=document.getElementById('classificacao')
         let genero=document.getElementById('genero')
         let imgFilme=document.getElementById('cartazFilme')
-        
+    
+
+
         imgFilme.src='../'+dadoFilme.imgFilme;
         nomeFilme.innerText=dadoFilme.nomeFilme;
         sinopse.innerText=dadoFilme.sinopse;
         classificacao.innerText=dadoFilme.classificacao;
         genero.innerText=dadoFilme.generoFilme;
-         
-    
-    
+   
     }
     
     preparaAtualizar(dados){
@@ -222,8 +243,10 @@ class Filme{
 
 
     atualizarFilme(id,filmeAt){
+        
         for(let i =0;i<this.filmes.length;i++){
             if(this.filmes[i].id===id){
+                this.atualizarSessao(this.filmes[i].nomeFilme,filmeAt.nomeFilme)
                 this.filmes[i].nomeFilme=filmeAt.nomeFilme
                 this.filmes[i].sinopse=filmeAt.sinopse
                 this.filmes[i].generoFilme=filmeAt.generoFilme
@@ -231,6 +254,7 @@ class Filme{
                 this.filmes[i].imgFilme=filmeAt.imgFilme
             }
         }
+
         this.atualizarDestaque(id,filmeAt)
         this.listarFilmesAdmin();
         this.atualizaLocalStorage();
@@ -247,7 +271,6 @@ class Filme{
                     this.filmesDestaque[i].imgFilme=filmeAt.imgFilme
                 }
                 this.atualizaLocalStorage();
-                
                 this.limparCampos();  
             }   
     }
@@ -256,12 +279,16 @@ class Filme{
         
         for (let i = 0; i < this.filmes.length; i++) {
             if(this.filmes[i].id === id){
-                 this.filmes.splice(i,1)
+                 this.excluirSessao(this.filmes[i].nomeFilme)
+                 this.filmes.splice(i,1)  
              }
-
+          
         }
        this.excluirDestaque(id)
        this.atualizaLocalStorage();
+       if(this.lsFilmes.length===0){
+            this.id=1
+        }
        this.listarFilmesAdmin();
        
     }
@@ -270,19 +297,38 @@ class Filme{
         for(let i=0;i<this.filmesDestaque.length;i++){
             if(this.filmesDestaque[i].id === id){
                 this.filmesDestaque.splice(i,1)
+                
             }
+            
         }
         this.atualizaLocalStorage();
         this.listarFilmesAdmin();
+        
     }
+    excluirSessao(nomeFilme){
+        for(let i=0;i<sessao.sessoes.length;i++){
+            if(sessao.sessoes[i].filmeSessao === nomeFilme){
+                sessao.sessoes.splice(i,1)
+            }
+        }
+        sessao.atualizaLocalStorage();
+        sessao.listarSessoesAdmin();
+        this.atualizaLocalStorage();
+        this.listarFilmesAdmin()
+    }
+    atualizarSessao(nomeFilme,nomeatual){
+           for(let i=0;i<sessao.sessoes.length;i++){
+             if(sessao.sessoes[i].filmeSessao === nomeFilme){
+               
+               sessao.sessoes[i].filmeSessao = nomeatual
+             }
+           }
+        sessao.atualizaLocalStorage();
+        sessao.listarSessoesAdmin();
+        this.atualizaLocalStorage();
+        this.listarFilmesAdmin()
+    }
+
 }
 
-const filme= new Filme
-class Sessao{
-     constructor(){
-         
-     }
-}
-const sessao=new Sessao
-
-
+var filme= new Filme

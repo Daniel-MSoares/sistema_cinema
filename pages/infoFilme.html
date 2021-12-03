@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- js -->
     <script src="../js/filme.js"></script>
+    <script src="../js/sessao.js"></script>
 </head>
 <body class="page" onload="filme.lerDadosFilme()">
     
@@ -49,13 +50,19 @@
               <h5>Classificação: <span id="classificacao"></span><span> || Gênero: <span id="genero"></span></h5>
             <hr style="border:2px solid red">
 
-
-            <div class=formIngresso>
-            <label>quantidade de ingressos:</label>
-            <input class="numero" type="number" id="qtdIngresso"><br>
-            
-            <button class="btn btn-success">Comprar ingresso</button>
-            </div>
+          
+            <section >
+              <button  onclick='sessao.listaSessoesInfoFilme(nomeFilme.innerText)' id="btnMostraSessoes" class="btn btn-success" >Ver Sessões Disponiveis</button>
+               <h2 id="tituloSessoes" class="invisible">Sessões Disponiveis:</h2>
+               <div id="sessoesDisponiveis">
+                <h6 id="tituloSala1" class="invisible">Sala 1:</h6>
+                  <div id="sessoesSala1"></div>
+                <h6 id="tituloSala2" class="invisible">Sala 2:</h6>
+                  <div id="sessoesSala2"></div>
+                <h6 id="tituloSala3" class="invisible">Sala 3:</h6>
+                  <div id="sessoesSala3"></div>
+               </div>
+            </section>
            </div>
          </div>
        </div>
