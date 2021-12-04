@@ -5,48 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L&D CINE!</title>
-    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
     <!-- Bootstrap 4-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- fontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- js -->
-    <script src="js/filme.js"></script>
-    <script src="js/ingresso.js"></script>
-    <script src="js/usuarios.js"></script>
+    <script src="../js/filme.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script src="../js/usuarios.js"></script>
 </head>
-<body onload="filme.listarFilmesHome()">
+<body class="page" onload="usuario.verificaPermissao()">
+<span id="acesso" class="invisible">user</span>    
     <header>
      <nav class="navbar navbar-expand-md navbar-light  navbar-transparente topo">
       <div class="container"> 
-        <a href="index.html" class="logo" >
-          <img class="logo" src="img/logo.jpg" width="70" alt="L&D CINE!"><span class='text-logo'>L&D CINE!</span>
+        <a href="../index.html" class="logo" >
+          <img class="logo" src="../img/logo.jpg" width="70" alt="L&D CINE!"><span class='text-logo'>L&D CINE!</span>
         </a>
 
         <button class="navbar-toggler" data-toggle="collapse"  data-target="#nav-principal">
             <i class="fas fa-bars text-white"></i> 
         </button>
         <div class="collapse navbar-collapse" id="nav-principal">
-            <ul class="navbar-nav ml-auto" id='nav'>
-              <!-- <li class="nav-item"><a href="index.html" class="mr-2 nav-link"><i class="fas fa-home"> </i> HOME</a></li> -->
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="../index.html" class="mr-2 nav-link"><i class="fas fa-home"> </i> HOME</a></li>
+              <li class="nav-item"><a onclick="usuario.logoff()" href="#" class="mr-2 nav-link"><i class="fas fa-sign-out-alt"></i> SAIR</a></li>
             </ul>
         </div>
       </div>
      </nav>
     </header>
+    
+   
 
-    <section class="main">
-     
-        <h1 class="text-center" id="sessaoDestaque">FILMES EM DESTAQUE</h1>
-        <div class="container catalogo" id='destaques'>
+    <section class="main mt-2">
+       <div class="container"> 
+         <div class="row">
+           
+           <div class="col-md-12 text-white dadosUsuario">
+              <h2>Nome:<span id="nomeUsuario"></h2>
+              <h5>email: <span id="email"></span>
+              <script>
+                  usuario.exibeDadosUsuario()
+             </script>
+            <hr style="border:2px solid red">
+
           
-        </div>
-        <h1 class="text-center mt-2" id="sessaoCartaz">EM CARTAZ</h1>
-        <div class="container catalogo" id="catalogo">
-
-
+            <section >
+              <button  onclick='' id="btnMostraMeusIngressos" class="btn btn-success" >Ver Meus Ingressos</button>
+               <h2 id="tituloIngressos" class="">Meus Ingressos:</h2>
+               
+               </div>
+            </section>
+           </div>
+         </div>
        </div>
     </section>
     <footer class="footer">

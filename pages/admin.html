@@ -17,10 +17,11 @@
     <!-- js -->
     <script src="../js/filme.js"></script>
     <script src="../js/sessao.js"></script>
+    <script src="../js/usuarios.js"></script>
 </head>
 
 <body class='page' onload="filme.listarFilmesAdmin()">
-
+<span id="acesso" class="invisible"></span>
     <header>
         <nav class="navbar navbar-expand-md navbar-light  navbar-transparente topo">
             <div class="container">
@@ -36,9 +37,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a href="../index.html" class="mr-2 nav-link"><i class="fas fa-home"> </i>
                                 HOME</a></li>
-                        <li class="nav-item"><a href="pages/usuario.html" class="mr-2 nav-link"><i class="far fa-user">
-                                </i> USUÁRIO</a></li>
-
+                        <li class="nav-item"><a onclick="usuario.logoff()" href="#" class="mr-2 nav-link"><i class="fas fa-sign-out-alt"></i> SAIR</a></li>
                     </ul>
                 </div>
             </div>
@@ -166,7 +165,7 @@
                 </div>
               </form>
               <button onclick="sessao.salvar()" class="btn btn-success">Registrar sessão</button>
-              <button onclick="sessao.limpaCampos()" class="btn btn-warning">Cancelar</button>
+              <button onclick="sessao.limparCampos()" class="btn btn-warning">Cancelar</button>
             </div>
         </div>
     </section>

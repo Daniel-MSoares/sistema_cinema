@@ -2,8 +2,11 @@ class Filme{
     constructor(){
         this.lsFilmes=JSON.parse(localStorage.getItem('filmes'))
         this.lsFilmesDestaque=JSON.parse(localStorage.getItem('filmesDestaque'))
-        
-        this.id= this.lsFilmes.length > 0 ? (this.lsFilmes[this.lsFilmes.length-1].id)+1 : 1
+        if(this.lsFilmes!==null){
+            this.id= this.lsFilmes.length > 0 ? (this.lsFilmes[this.lsFilmes.length-1].id)+1 : 1
+        }else{
+            this.id= 1;
+        }
         this.editar=null;
         
         this.filmes= this.lsFilmes !== null ? this.lsFilmes : []
@@ -120,6 +123,8 @@ class Filme{
     
     }
     listarFilmesAdmin(){
+        document.getElementById('acesso').innerText='admin'
+        usuario.verificaPermissao()
         let listaFilmes=this.filmes
         let listaDestaques=this.filmesDestaque
         let tbody=document.getElementById('tbody')//seleciona o corpo da tabela de todos filmes
@@ -175,13 +180,14 @@ class Filme{
         let listaFilmes=this.filmes
         let listaFilmesDestaque=this.filmesDestaque
         let catalogo=document.getElementById('catalogo')
-        
+//executa função que forma os links de navegação 
+        usuario.verificaPermissao()
+//muda exibição da home caso não tenha nehum filme adicionado
          if(listaFilmes.length==0){
              document.getElementById("sessaoDestaque").innerText='nenhum filme foi adicionado';
-             
-             document.getElementById("sessaoCartaz").classList.add('invisible');
-             
+             document.getElementById("sessaoCartaz").classList.add('invisible'); 
         }
+ 
         let destaques=document.getElementById('destaques')
 //lista os  destaques
         listaFilmesDestaque.forEach(destaque=>{
@@ -207,6 +213,7 @@ class Filme{
        }
 
     lerDadosFilme(){
+        usuario.verificaPermissao()
         const urlParams = new URLSearchParams(window.location.search);
         const dadoFilme = JSON.parse(urlParams.get('obj'));
         

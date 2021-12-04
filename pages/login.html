@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L&D CINE!</title>
+  <link rel="shortcut icon" href="../img/logo.jpg" type="image/x-icon">
+  <!-- Bootstrap 4-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- fontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <!-- css -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- js -->
+  <script src="../js/filme.js"></script>
+  <script src="../js/ingresso.js"></script>
+  <script src="../js/usuarios.js"></script>
+</head>
+
+<body onload="" class="page">
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light  navbar-transparente topo">
+      <div class="container">
+        <a href="../index.html" class="logo">
+          <img class="logo" src="../img/logo.jpg" width="70" alt="L&D CINE!"><span class='text-logo'>L&D CINE!</span>
+        </a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">
+          <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="nav-principal">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="../index.html" class="mr-2 nav-link"><i class="fas fa-home"> </i> HOME</a>
+            </li>
+          
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="conatiner">
+    <section class="main">
+
+      <script>
+        function mostraFormCadastro() {
+          document.getElementById('cadastrarUsuario').classList.remove('invisible')
+          document.getElementById('caixa-login').classList.add('invisible')
+        }
+        function mostraFormLogin() {
+          document.getElementById('cadastrarUsuario').classList.add('invisible')
+          document.getElementById('caixa-login').classList.remove('invisible')
+        }
+      </script>
+
+
+
+      <div id='caixa-login' class="caixa-login">
+        <span id="mensagem" class='invisible'>acesso negado</span>
+        <script>
+           let urlParams = new URLSearchParams(window.location.search);
+           let param =urlParams.get('acesso')
+          if(param=='negado'){
+              document.getElementById('mensagem').classList.remove('invisible')
+                setTimeout(() => {
+                  document.getElementById('mensagem').classList.add('invisible')
+                }, 3000);
+            }
+
+        </script>
+
+        <form>
+        <div class="input">
+          <label for="LGemailUsuario">Email:</label><br>
+          <input type="email"  id='LGemailUsuario' placeholder="exemplo@exemplo.com">
+        </div>
+
+        <div class="input">
+          <label for="LGsenha">Senha:</label><br>
+          <input type="password"  id='LGsenha' placeholder="senha">
+        </div>
+        </form>
+        <button onclick="usuario.login()" class="btn btn-success">ENTRAR</button>
+
+        <a class='btn btn-dark'href="#cadastrarUsuario" onclick="mostraFormCadastro()">Ainda Não Tenho Conta</a>
+      </div>
+
+      <div id='cadastrarUsuario' class="caixa-login invisible">
+        <h3>Cadastrar Novo Usuario</h3>
+
+
+        <div class="input">
+          <label for="emailUsuario">Email:</label><br>
+          <input type="email" name='nomeUsuario' id='emailUsuario' placeholder="exemplo@email.com">
+          
+        </div>
+
+        <div class="input">
+         <label for="senhaUsuario">senha:</label><br>
+         <input type="password" name='nomeUsuario' id='senhaUsuario' placeholder="senha">
+        </div>
+
+        <div class="input">
+          <label for="nomeUsuario">Nome:</label><br>
+          <input type="text" name='nomeUsuario' id='nomeUsuario' placeholder="Nome">
+        </div>
+        <div class="input">
+           <a href="#">Termos de uso</a><br>
+          <input type="checkbox" id='termos'>
+          <label id="labelTermos" for="termos">Li e concordo com os Termos</label><br>
+        </div>
+
+       <button onclick="usuario.criarUsuario()" class="btn btn-success">CRIAR CONTA</button>
+       <button onclick="mostraFormLogin() " class="btn btn-warning">CANCELAR</button>
+     </div>
+
+  </section>
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

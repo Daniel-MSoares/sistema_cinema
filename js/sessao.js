@@ -1,7 +1,11 @@
 class Sessao{
     constructor(){
         this.lsSessao=JSON.parse(localStorage.getItem('sessao'))
-        this.id=this.lsSessao.length > 0? (this.lsSessao[this.lsSessao.length-1].idSessao)+1 : 1
+        if(this.lsSessao!==null){
+            this.id=this.lsSessao.length > 0? (this.lsSessao[this.lsSessao.length-1].idSessao)+1 : 1
+        }else{
+            this.id=1
+        }
         this.sessoes=this.lsSessao !==null ? this.lsSessao : []
     }
     atualizaLocalStorage(){
@@ -60,7 +64,7 @@ class Sessao{
             let td_preco=tr.insertCell().innerText=sessao.precoIngresso;
             let td_acao=tr.insertCell().innerHTML=`<button onClick='sessao.excluirSessao(${sessao.idSessao})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button>`
            });
-        console.log(this.sessoes)
+        
     }
     excluirSessao(id){
         for(let i =0 ;i<this.sessoes.length;i++){
