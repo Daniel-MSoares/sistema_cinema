@@ -123,7 +123,7 @@ class Filme{
     
     }
     listarFilmesAdmin(){
-        document.getElementById('acesso').innerText='admin'
+        usuario.validarAcesso('admin')
         usuario.verificaPermissao()
         let listaFilmes=this.filmes
         let listaDestaques=this.filmesDestaque

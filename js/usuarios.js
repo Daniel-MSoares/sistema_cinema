@@ -26,10 +26,11 @@ class Usuario{
         let usuario=this.lerDados()
         if(this.validaCampo(usuario)){
             this.usuarios.push(usuario);
+            mostraFormLogin()
         }
        this.atualizaLocalStorage();
-       mostraFormLogin()
-       console.log(this.usuarios)
+       
+       
     }
     lerDados(){
         let objUsuario={}
@@ -45,18 +46,32 @@ class Usuario{
         if(usuario.nome===''){
             msg+='-Informe o seu Nome- \n'
         }
+        if(usuario.nome.length < 4){
+            msg+='-Informe um nome com no minimo 4 caracteres- \n'
+        }
         if(usuario.email===''){
             msg+='-Informe um email- \n'
         }
         if(usuario.senha===''){
             msg+='-Informe uma Senha- \n'
+        }
+        if(usuario.senha.length < 6){
+            msg+='-Senha deve conter no minimo 6 dígitos- \n'
         } 
         if(document.getElementById('termos').checked===false){
             msg+='-Leia e aceite os termos de uso- \n'
         }
+        
+        for(let i=0;i<this.usuarios.length;i++){
+            if(usuario.email===this.usuarios[i].email){
+                msg='-Este email já está cadastrado- \n'
+            }
+        }
 
         if(msg!==''){
-            alert(msg);
+            document.getElementById('msgErro').classList.remove('invisible')
+            document.getElementById('msgErro').innerText=msg
+            // alert(msg);
             return false;
         }
 
@@ -79,9 +94,15 @@ class Usuario{
             }
         });
         if(msg===''){
-            alert('usuário não existe')
+            document.getElementById('mensagem').innerText='usuário não existe'
+            document.getElementById('mensagem').classList.remove('invisible')
+            
+            // alert('usuário não existe')
         }else if((msg==='Senha incorreta')){
-            alert(msg)
+            document.getElementById('mensagem').innerText=msg
+            document.getElementById('mensagem').classList.remove('invisible')
+            
+            // alert(msg)
         }else{
            if(permissao=='user'){
             window.location.href='usuario.html'
@@ -97,11 +118,9 @@ class Usuario{
         
     }
 
-    verificaPermissao(){
-            this.validarAcesso()
-            
+    verificaPermissao(){    
             if(this.usuarioLogado === null){
-                console.log('ninguem logado')
+                
                 let linkLogin=document.createElement('li')
                 linkLogin.id='linkLogin'
                 linkLogin.classList.add('nav-item')
@@ -114,7 +133,7 @@ class Usuario{
            if(this.usuarioLogado  !== null){
 
             if(this.usuarioLogado.permissao==='admin'){
-                console.log('olá administrador '+this.usuarioLogado.nome)
+               
                 let linkAdmin=document.createElement('li')
                 linkAdmin.id='linkAdmin'
                 linkAdmin.classList.add('nav-item')
@@ -134,26 +153,25 @@ class Usuario{
                  document.getElementById('nav').appendChild( linkUsuario);
                  }
                 
-                 console.log('olá usuário'+this.usuarioLogado.nome)
+                 
             }
         }
        
     }
     
-    validarAcesso(){
-    if(document.getElementById('acesso') !== null){
+    validarAcesso(permissao){
+    
        if(this.usuarioLogado === null){
         window.location.href='login.html?acesso=negado'
        }else{
-             let acesso=document.getElementById('acesso').innerText
-             if(acesso !== this.usuarioLogado.permissao){
+             if(permissao !== this.usuarioLogado.permissao){
                 window.location.href='login.html?acesso=negado'
              }
        }
-     }
     }
 
     exibeDadosUsuario(){
+       this.validarAcesso('user')
        document.getElementById('nomeUsuario').innerText=this.usuarioLogado.nome;
        document.getElementById('email').innerText=this.usuarioLogado.email;
     };

@@ -58,19 +58,7 @@
 
 
       <div id='caixa-login' class="caixa-login">
-        <span id="mensagem" class='invisible'>acesso negado</span>
-        <script>
-           let urlParams = new URLSearchParams(window.location.search);
-           let param =urlParams.get('acesso')
-          if(param=='negado'){
-              document.getElementById('mensagem').classList.remove('invisible')
-                setTimeout(() => {
-                  document.getElementById('mensagem').classList.add('invisible')
-                }, 3000);
-            }
-
-        </script>
-
+        <span id="mensagem" class='invisible'></span>
         <form>
         <div class="input">
           <label for="LGemailUsuario">Email:</label><br>
@@ -84,13 +72,12 @@
         </form>
         <button onclick="usuario.login()" class="btn btn-success">ENTRAR</button>
 
-        <a class='btn btn-dark'href="#cadastrarUsuario" onclick="mostraFormCadastro()">Ainda Não Tenho Conta</a>
+        <a class='btn btn-dark'href="?acao=cadastrarUsuario">Ainda Não Tenho Conta</a>
       </div>
 
       <div id='cadastrarUsuario' class="caixa-login invisible">
+        <div id='msgErro' class="invisible"></div>
         <h3>Cadastrar Novo Usuario</h3>
-
-
         <div class="input">
           <label for="emailUsuario">Email:</label><br>
           <input type="email" name='nomeUsuario' id='emailUsuario' placeholder="exemplo@email.com">
@@ -113,9 +100,24 @@
         </div>
 
        <button onclick="usuario.criarUsuario()" class="btn btn-success">CRIAR CONTA</button>
-       <button onclick="mostraFormLogin() " class="btn btn-warning">CANCELAR</button>
+       <a class='btn btn-warning'href="?acao=login">CANCELAR</a>
      </div>
+     <script>
+      let urlParams = new URLSearchParams(window.location.search);
+      let acesso =urlParams.get('acesso')
+      let acao =urlParams.get('acao')
+     if(acesso=='negado'){
+         document.getElementById('mensagem').innerText='Acesso Negado'
+         document.getElementById('mensagem').classList.remove('invisible')
+           setTimeout(() => {
+             document.getElementById('mensagem').classList.add('invisible')
+           }, 3000);
+       }
+     if(acao=='cadastrarUsuario'){
+       mostraFormCadastro() 
+     }
 
+   </script>
   </section>
 
   </div>
