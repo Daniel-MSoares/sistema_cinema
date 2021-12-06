@@ -36,8 +36,8 @@ class Sessao{
       objSessao.horarioSessao=document.getElementById("horarioSessao").value
       objSessao.dataSessao=document.getElementById("dataSessao").value
       objSessao.salaSessao=document.getElementById("salaSessao").value
-      objSessao.tipoSessao=document.getElementById("tipoSessao").value
-      objSessao.precoIngresso=document.getElementById("precoIngresso").value
+      objSessao.idiomaSessao=document.getElementById("idiomaSessao").value
+      objSessao.precoIngresso=parseFloat(document.getElementById("precoIngresso").value).toFixed(2)
       return objSessao      
     }
     limparCampos(){
@@ -45,7 +45,7 @@ class Sessao{
         document.getElementById("horarioSessao").value=''
         document.getElementById("dataSessao").value=''
         document.getElementById("salaSessao").value=''
-        document.getElementById("tipoSessao").value=''
+        document.getElementById("idiomaSessao").value=''
         document.getElementById("precoIngresso").value=''
     }
 
@@ -60,7 +60,7 @@ class Sessao{
             let td_horario=tr.insertCell().innerText=sessao.horarioSessao;
             let td_data=tr.insertCell().innerText=sessao.dataSessao;
             let td_sala=tr.insertCell().innerText=sessao.salaSessao;
-            let td_tipo=tr.insertCell().innerText=sessao.tipoSessao;
+            let td_idioma=tr.insertCell().innerText=sessao.idiomaSessao;
             let td_preco=tr.insertCell().innerText=sessao.precoIngresso;
             let td_acao=tr.insertCell().innerHTML=`<button onClick='sessao.excluirSessao(${sessao.idSessao})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button>`
            });
@@ -97,7 +97,7 @@ class Sessao{
         if(sessao.salaSessao===''){
            msg+='-Informe a sala da sessão- \n'
         }
-        if(sessao.tipoSessao===''){
+        if(sessao.idiomaSessao===''){
             msg+='-Informe o tipo da sessão- \n'
          }
         this.sessoes.forEach(sessaoSalva => {
@@ -129,7 +129,7 @@ class Sessao{
                 sessoesFilme.push(sessao);
              }
         });
-        console.log(sessoesFilme)
+        // console.log(sessoesFilme)
         if(sessoesFilme.length===0){
             document.getElementById('tituloSessoes').innerText='Desculpe,não há sessões disponiveis,no momento,tente mais tarde!'
         }
@@ -138,58 +138,69 @@ class Sessao{
             if(sessoesFilme[i].salaSessao=='Sala 1'){
                 document.getElementById('tituloSala1').classList.remove('invisible')
                 let btnSessao=document.createElement('a')
+                btnSessao.href=`comprarIngresso.html?idsessao=${sessoesFilme[i].idSessao}`
                 btnSessao.classList.add('btn')
-                btnSessao.classList.add('btn-primary')
+                
+                if(sessoesFilme[i].idiomaSessao ==='dub'){
+                    btnSessao.classList.add('btn-primary')
+                }else{
+                    btnSessao.classList.add('btn-warning')
+                }
+
+
                 btnSessao.classList.add('mr-1')
                 btnSessao.classList.add('btnSessao')
-                btnSessao.innerHTML=sessoesFilme[i].horarioSessao+'<br>'+sessoesFilme[i].dataSessao
+                btnSessao.innerHTML=`<small>${sessoesFilme[i].idiomaSessao}</small>-${sessoesFilme[i].horarioSessao}<br>${sessoesFilme[i].dataSessao}`
                 
                 btnSessao.addEventListener("mouseover", function () {
                     btnSessao.innerHTML = 'Comprar'
                 })
                 btnSessao.addEventListener("mouseout", function () {
-                    btnSessao.innerHTML =sessoesFilme[i].horarioSessao+'<br>'+sessoesFilme[i].dataSessao
+                    btnSessao.innerHTML =`<small>${sessoesFilme[i].idiomaSessao}</small>-${sessoesFilme[i].horarioSessao}<br>${sessoesFilme[i].dataSessao}`
                 })
-
-
-
-                btnSessao.href='#'
                 document.getElementById('sessoesSala1').appendChild(btnSessao)
             }
             if(sessoesFilme[i].salaSessao=='Sala 2'){
                 document.getElementById('tituloSala2').classList.remove('invisible')
                 let btnSessao=document.createElement('a')
+                btnSessao.href=`comprarIngresso.html?idsessao=${sessoesFilme[i].idSessao}`
                 btnSessao.classList.add('btn')
-                btnSessao.classList.add('btn-primary')
+                if(sessoesFilme[i].idiomaSessao ==='dub'){
+                    btnSessao.classList.add('btn-primary')
+                }else{
+                    btnSessao.classList.add('btn-warning')
+                }
                 btnSessao.classList.add('mr-1')
                 btnSessao.classList.add('btnSessao')
-                btnSessao.innerHTML=sessoesFilme[i].horarioSessao+'<br>'+sessoesFilme[i].dataSessao
+                btnSessao.innerHTML=`<small>${sessoesFilme[i].idiomaSessao}</small>-${sessoesFilme[i].horarioSessao}<br>${sessoesFilme[i].dataSessao}`
                 
                 btnSessao.addEventListener("mouseover", function () {
                         btnSessao.innerHTML = 'Comprar'
                     })
                 btnSessao.addEventListener("mouseout", function () {
-                        btnSessao.innerHTML =sessoesFilme[i].horarioSessao+'<br>'+sessoesFilme[i].dataSessao
+                        btnSessao.innerHTML =`<small>${sessoesFilme[i].idiomaSessao}</small>-${sessoesFilme[i].horarioSessao}<br>${sessoesFilme[i].dataSessao}`
                 })
-
-                btnSessao.href='#'
                 document.getElementById('sessoesSala2').appendChild(btnSessao)
             }
             if(sessoesFilme[i].salaSessao=='Sala 3'){
                 document.getElementById('tituloSala3').classList.remove('invisible')
                 let btnSessao=document.createElement('a')
+                btnSessao.href=`comprarIngresso.html?idsessao=${sessoesFilme[i].idSessao}`
                 btnSessao.classList.add('btn')
-                btnSessao.classList.add('btn-primary')
+                if(sessoesFilme[i].idiomaSessao ==='dub'){
+                    btnSessao.classList.add('btn-primary')
+                }else{
+                    btnSessao.classList.add('btn-warning')
+                }
                 btnSessao.classList.add('mr-1')
                 btnSessao.classList.add('btnSessao')
-                btnSessao.innerHTML=sessoesFilme[i].horarioSessao+'<br>'+sessoesFilme[i].dataSessao
+                btnSessao.innerHTML=`<small>${sessoesFilme[i].idiomaSessao}</small>${sessoesFilme[i].horarioSessao}<br>${sessoesFilme[i].dataSessao}`
                 btnSessao.addEventListener("mouseover", function () {
                     btnSessao.innerHTML = 'Comprar'
                 })
                  btnSessao.addEventListener("mouseout", function () {
-                    btnSessao.innerHTML =sessoesFilme[i].horarioSessao+'<br>'+sessoesFilme[i].dataSessao
+                    btnSessao.innerHTML =`<small>${sessoesFilme[i].idiomaSessao}</small>-${sessoesFilme[i].horarioSessao}<br>${sessoesFilme[i].dataSessao}`
                 })
-                btnSessao.href='#'
                 document.getElementById('sessoesSala3').appendChild(btnSessao)
             }
         }

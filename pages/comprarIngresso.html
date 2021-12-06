@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L&D CINE!</title>
+    <!-- Bootstrap 4-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- fontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- js -->
+    <script src="../js/filme.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script src="../js/usuarios.js"></script>
+    <script src="../js/ingresso.js"></script>
+</head>
+<body class="page" onload="ingresso.exibirDadosSessao()">
+<span id="acesso" class="invisible">user</span>    
+    <header>
+     <nav class="navbar navbar-expand-md navbar-light  navbar-transparente topo">
+      <div class="container"> 
+        <a href="../index.html" class="logo" >
+          <img class="logo" src="../img/logo.jpg" width="70" alt="L&D CINE!"><span class='text-logo'>L&D CINE!</span>
+        </a>
+
+        <button class="navbar-toggler" data-toggle="collapse"  data-target="#nav-principal">
+            <i class="fas fa-bars text-white"></i> 
+        </button>
+        <div class="collapse navbar-collapse" id="nav-principal">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="../index.html" class="mr-2 nav-link"><i class="fas fa-home"> </i> HOME</a></li>
+              <li class="nav-item"><a onclick="usuario.logoff()" href="#" class="mr-2 nav-link"><i class="fas fa-sign-out-alt"></i> SAIR</a></li>
+            </ul>
+        </div>
+      </div>
+     </nav>
+    </header>
+    <section class="main mt-2">
+       <div class="container"> 
+         <div class="row">
+           <div class='col-md-12 dados-ingresso'>
+               <h1>Nome do Filme: <span id='tituloFilmeIngresso'></span></h1>
+               <h4><i class="fas fa-door-open"></i><span id='salaFilmeIngresso'></span>  |
+                <i class="fas fa-calendar-day"></i> <span id='dataFilmeIngresso'></span> |
+                <i class="fas fa-clock"></i> <span id='horaFilmeIngresso'></span> |
+                <i class="fas fa-microphone"></i> <span id='idiomaFilmeIngresso'></span>|
+                <i class="fas fa-dollar-sign"></i> R$ <span id='precoFilmeIngresso'></span>
+            </h4>
+           </div>
+           <div class="row">
+            <div class='col-md-12 form-compraIngresso'>
+                <div>
+                    <label for="qtdIngresso"> Quantidade de ingressos:</label>
+                    <input type="number" name="qtdIngresso" id="qtdIngresso" placeholder="0">
+                </div>
+                <h2>Adicionar Pipoca:</h2>
+                <button onclick="ingresso.mostraProdutos()">Adicionar Produtos</button>
+                <div id='produtos'  class='produtos'>
+                    
+                    
+                </div>
+                
+               <!-- <h2>Escolher assentos:</h2>
+                <div id='assentos'  class='assentos'>
+                   
+                   <span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span>
+
+                         ______________
+                </div>
+                
+
+                 <h2>Meio de pagamento:</h2>
+                <div id='pagamento' style="display:none">
+                    <label>Cartão de crédito:</label>
+                    <input class='cartaoCredito' type="nunber" placeholder="4111111111111111">
+                    <label>CVV:</label>
+                    <input type="nunber" placeholder="123">
+                </div> -->
+                <button class="btn btn-success" onclick="ingresso.comprarIngresso()">Finalizar Compra</button>
+            </div>
+           </div>
+         </div>
+       </div>
+    </section>
+
+
+
+
+
+
+
+
+    
+    <footer class="footer">
+      L&DCINE!-PROJETO FINAL CURSO RESULTUP!-2021<br>DANIEL MUNIZ/LETÍCIA BARROS &COPY
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
