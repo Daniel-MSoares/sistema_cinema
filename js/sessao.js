@@ -38,6 +38,7 @@ class Sessao{
       objSessao.salaSessao=document.getElementById("salaSessao").value
       objSessao.idiomaSessao=document.getElementById("idiomaSessao").value
       objSessao.precoIngresso=parseFloat(document.getElementById("precoIngresso").value).toFixed(2)
+      objSessao.cadeirasOcupadas=[]
       return objSessao      
     }
     limparCampos(){

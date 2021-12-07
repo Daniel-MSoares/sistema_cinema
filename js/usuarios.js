@@ -148,7 +148,7 @@ class Usuario{
                  let linkUsuario=document.createElement('li')
                  linkUsuario.id='linkUsuario'
                  linkUsuario.classList.add('nav-item')
-                 linkUsuario.innerHTML='<a href="pages/usuario.html" class="mr-2 nav-link"><i class="far fa-user"> </i>'+this.usuarioLogado.nome+'</a></li>'
+                 linkUsuario.innerHTML='<a href="pages/usuario.html" class="mr-2 nav-link"><i class="far fa-user"> </i>'+this.usuarioLogado.nome.split(' ')[0]+'</a></li>'
                  if(document.getElementById('nav')!==null){
                  document.getElementById('nav').appendChild( linkUsuario);
                  }

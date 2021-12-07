@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="nav-principal">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a href="../index.html" class="mr-2 nav-link"><i class="fas fa-home"> </i> HOME</a></li>
-              <li class="nav-item"><a onclick="usuario.logoff()" href="#" class="mr-2 nav-link"><i class="fas fa-sign-out-alt"></i> SAIR</a></li>
+              
             </ul>
         </div>
       </div>
@@ -52,27 +52,30 @@
            </div>
            <div class="row">
             <div class='col-md-12 form-compraIngresso'>
-                <div>
+                <div class="">
                     <label for="qtdIngresso"> Quantidade de ingressos:</label>
-                    <input type="number" name="qtdIngresso" id="qtdIngresso" placeholder="0">
+                    <input  value='0' type="number" name="qtdIngresso" id="qtdIngresso" placeholder="0" onchange="ingresso.mudaValorIngressos()" onblur="ingresso.mudaValorIngressos()">
+                    
+                </div>
+                <div class="total">  
+                   <small>TOTAL:</small><br>
+                   <span id="total">R$ 00.00</span>
                 </div>
                 <h2>Adicionar Pipoca:</h2>
-                <button onclick="ingresso.mostraProdutos()">Adicionar Produtos</button>
-                <div id='produtos'  class='produtos'>
+                <button class="btn btn-primary" onclick="ingresso.mostraProdutos()"><small>Adicionar Produtos</small></button>
+                <div id='produtos'  class='produtos '>
                     
                     
                 </div>
-                
-               <!-- <h2>Escolher assentos:</h2>
-                <div id='assentos'  class='assentos'>
+               
+                <button class="btn btn-primary mt-4" onclick="ingresso.mostrarCadeiras()"><small>Escolher Assentos</small></button>
+                <h2>Escolher assentos:</h2>
+                <div id='assentos'  class='assentos '>
                    
-                   <span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span><span class="cadeira">1</span>
-
-                         ______________
                 </div>
                 
 
-                 <h2>Meio de pagamento:</h2>
+                 <!--<h2>Meio de pagamento:</h2>
                 <div id='pagamento' style="display:none">
                     <label>Cartão de crédito:</label>
                     <input class='cartaoCredito' type="nunber" placeholder="4111111111111111">
