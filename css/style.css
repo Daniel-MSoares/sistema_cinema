@@ -99,7 +99,42 @@ footer{
     color: white;
     font-size: 18px;
 }
-/* estilo pagina usuario */
+
+#telaBuscarIngresso{
+    transition: 1s;
+    position: absolute;
+    z-index: 100;
+    width: 90%;
+    height: 90%;
+    left:5%;
+    top:5%;
+    background-color: gray;
+    border:5px solid red;
+    border-radius: 10px;
+}
+.fechar{
+    font-size: large;
+    margin-right: auto;
+}
+.campoCodigo{
+    margin-top: 3px;
+    font-size: 30px;
+    line-height: 45px;
+    text-align: center;
+    width: 50%;
+    
+}
+.pesquisar{
+    
+    font-size: 25px;
+    margin-top: -12px;
+    align-self: center;
+    
+}
+
+
+
+/* estilo pagina login */
 
 .caixa-login{
     text-align: center;
@@ -145,6 +180,23 @@ footer{
     color:white;
     background: rgba(228, 10, 10, 0.521);
  }
+ /* estilo pagina usuario*/
+.ingresso{
+    font-size: medium;
+    font-weight: normal;
+    margin-top: 10px;
+    width: 98%;
+    margin:0 auto;
+    border:2px solid red;
+    border-left: none;
+    background-color: rgb(112, 112, 112);
+}
+.btnIngresso{
+    border-left:1px dashed red;
+    display: flex;
+    align-items: center;
+}
+
 /* estilo pagina ingresso*/
 .dados-ingresso{
     border-bottom:2px  solid red ;
@@ -212,6 +264,12 @@ footer{
 .assentos button.cadeira.ocupado{
     color:white;
     background-color:rgb(250, 32, 24);
+    border: 1px solid hsl(90, 33%, 99%);
+}
+
+.assentos button.cadeira.selecionado{
+    color:white;
+    background-color:rgb(250, 227, 24);
     border: 1px solid hsl(90, 33%, 99%);
 }
 

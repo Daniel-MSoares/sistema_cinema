@@ -12,9 +12,9 @@
     <!-- css -->
     <link rel="stylesheet" href="../css/style.css">
     <!-- js -->
-    <script src="../js/filme.js"></script>
-    <script src="../js/sessao.js"></script>
+    
     <script src="../js/usuarios.js"></script>
+    <script src="../js/ingresso.js"></script>
 </head>
 <body class="page" onload="usuario.verificaPermissao()">
    
@@ -54,10 +54,11 @@
 
           
             <section >
-              <button  onclick='' id="btnMostraMeusIngressos" class="btn btn-success" >Ver Meus Ingressos</button>
-               <h2 id="tituloIngressos" class="">Meus Ingressos:</h2>
-               
-               </div>
+              <button  onclick='ingresso.exibirMeusIngressos()' id="btnMostraMeusIngressos" class="btn btn-success mb-3" >Ver Meus Ingressos</button>
+              <div id='areaIngressos'>
+                 <!-- prenchida dinamicamente -->
+              </div>
+              
             </section>
            </div>
          </div>

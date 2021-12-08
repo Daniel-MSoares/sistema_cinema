@@ -54,7 +54,7 @@
             <div class='col-md-12 form-compraIngresso'>
                 <div class="">
                     <label for="qtdIngresso"> Quantidade de ingressos:</label>
-                    <input  value='0' type="number" name="qtdIngresso" id="qtdIngresso" placeholder="0" onchange="ingresso.mudaValorIngressos()" onblur="ingresso.mudaValorIngressos()">
+                    <input min="0" value='0' type="number" name="qtdIngresso" id="qtdIngresso" placeholder="0" onchange="ingresso.mudaValorIngressos()" onblur="ingresso.mudaValorIngressos()">
                     
                 </div>
                 <div class="total">  
@@ -69,33 +69,35 @@
                 </div>
                
                 <button class="btn btn-primary mt-4" onclick="ingresso.mostrarCadeiras()"><small>Escolher Assentos</small></button>
-                <h2>Escolher assentos:</h2>
-                <div id='assentos'  class='assentos '>
-                   
+                <div id="divCadeiras" class="invisible">
+                <h2 style="text-align: center;">cadeira(s) escolhida(s) :[<span id='cadeiras'></span>]</h2>
+                <div id='assentos'  class='assentos '></div>
+                </div>
+
+                <h2 style="text-align: center;">Pague com Pix:</h2>
+                <div id='pagamento'>
+                    
                 </div>
                 
-
-                 <!--<h2>Meio de pagamento:</h2>
-                <div id='pagamento' style="display:none">
-                    <label>Cartão de crédito:</label>
-                    <input class='cartaoCredito' type="nunber" placeholder="4111111111111111">
-                    <label>CVV:</label>
-                    <input type="nunber" placeholder="123">
-                </div> -->
-                <button class="btn btn-success" onclick="ingresso.comprarIngresso()">Finalizar Compra</button>
+                
             </div>
+            <button id="btnFinalizar" class="btn btn-success ml-3 mt-2" onclick="ingresso.comprarIngresso()">Finalizar Compra</button>
+            <span id='avisoAdministrador' class='invisible' style="color:red;font-size: large;">Contas de Administradores não podem efetuar compras</span>
            </div>
          </div>
        </div>
     </section>
-
-
-
-
-
-
-
-
+      <script>
+      if(usuario.usuarioLogado==null){
+        document.getElementById('btnFinalizar').disabled=true;
+        document.getElementById('avisoAdministrador').innerText='Por Favor,Faça login para continuar'
+        document.getElementById('avisoAdministrador').classList.remove('invisible')
+      }
+      if(usuario.usuarioLogado!==null && usuario.usuarioLogado.permissao=='admin'){
+        document.getElementById('btnFinalizar').disabled=true;
+        document.getElementById('avisoAdministrador').classList.remove('invisible');
+      }
+      </script>
     
     <footer class="footer">
       L&DCINE!-PROJETO FINAL CURSO RESULTUP!-2021<br>DANIEL MUNIZ/LETÍCIA BARROS &COPY

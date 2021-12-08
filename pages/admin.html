@@ -18,6 +18,8 @@
     <script src="../js/filme.js"></script>
     <script src="../js/sessao.js"></script>
     <script src="../js/usuarios.js"></script>
+    <script src="../js/ingresso.js"></script>
+    
 </head>
 
 <body class='page' onload="filme.listarFilmesAdmin()">
@@ -65,10 +67,17 @@
                     }
                      
                 }
-
+                function mostraBuscar(){
+                    document.getElementById('telaBuscarIngresso').classList.remove('invisible')
+                }
+                function escondeBuscar(){
+                    document.getElementById('telaBuscarIngresso').classList.add('invisible')
+                }
+                
             </script>
             <button class="btn btn-success invisible" id="btn-formF" onClick="mostraForm('Filme')">+ADD FILME</button>
             <button class="btn btn-success" id="btn-formS" onClick="mostraForm('Sessao')">+ADD SESSÃO</button>
+            <button class="btn btn-success" id="btn-buscarIngresso" onClick="mostraBuscar()">VALIDAR INGRESSO</button>
 
             <h2 class="text-white text-center" id="tituloForm">Adicionar Novo Filme</h2>
             <div class="cadastroFilme " id="formFilme">
@@ -84,7 +93,8 @@
                     </div>
                     <div class="lineInput">
                         <label for="sinopseFilme">sinopse:</label><br>
-                        <textarea class="form-control" type="textarea" id="sinopseFilme" name="sinopseFilme" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. "></textarea>
+                        <textarea class="form-control" type="textarea" id="sinopseFilme" name="sinopseFilme" 
+                        placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. "></textarea>
                         
                     </div>
                     <div class="lineInput">
@@ -118,7 +128,7 @@
                     </div>
                     <div class="lineInput">
                         <label id="labelImgFilme">Selecione a imagem do filme:('Diretorio img')</label>
-                        <input type="file" id="imgFilme" placeholder="img/img.jpg">
+                        <input type="file" id="imgFilme">
                     </div>
                 </form>
                 <button class="btn btn-success" id='btnSave' onclick="filme.salvar()">Salvar</button>
@@ -170,6 +180,24 @@
               <button onclick="sessao.limparCampos()" class="btn btn-warning">Cancelar</button>
             </div>
         </div>
+
+<!-- Modal de validar Ingresso -->
+        <div id='telaBuscarIngresso' class="invisible">
+          <h1><button onclick="escondeBuscar()" class='btn btn-danger fechar'>X</button>Informe O Código do Ingresso</h1>
+        <input class="campoCodigo" type="text" id='campoCodigoIngresso' placeholder="digite o codigo do ingreso" >
+        <button class="btn btn-primary pesquisar" onclick='ingresso.pesquisarIngresso(campoCodigoIngresso.value)'>
+            <i class="fas fa-search"></i>
+        </button>
+        <button class="btn btn-primary pesquisar" onclick='console.log(campoCodigoIngresso.value)'>
+            <i class="fas fa-qrcode"></i>
+        </button>
+        
+            <div id='dadosIngresso'>
+                
+            
+            </div>
+        </div>
+<!-- Modal de validar Ingresso -->
     </section>
     <section>
         

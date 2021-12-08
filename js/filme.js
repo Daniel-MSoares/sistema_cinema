@@ -8,7 +8,6 @@ class Filme{
             this.id= 1;
         }
         this.editar=null;
-        
         this.filmes= this.lsFilmes !== null ? this.lsFilmes : []
         this.filmesDestaque= this.lsFilmesDestaque !== null ? this.lsFilmesDestaque : []
     }
@@ -58,18 +57,17 @@ class Filme{
       }else{
         objFilme.destaque=false;
       }
-
       objFilme.nomeFilme=document.getElementById('nomeFilme').value;
       objFilme.sinopse=document.getElementById('sinopseFilme').value;
       objFilme.classificacao=document.getElementById('classificacaoFilme').value;
       objFilme.generoFilme=document.getElementById('generoFilme').value;
-      if(document.getElementById('imgFilme').files.length!==0){
-          objFilme.imgFilme='img/'+document.getElementById('imgFilme').files[0].name;
-      }else{
-          objFilme.imgFilme='img/'
-      }
-      
-      
+      if(this.editar==null){
+        if(document.getElementById('imgFilme').files.length!==0){
+            objFilme.imgFilme='img/'+document.getElementById('imgFilme').files[0].name;
+        }else{
+            objFilme.imgFilme='img/'
+        }
+       }
       return objFilme
     }
 
@@ -89,7 +87,7 @@ class Filme{
             msg+='-selecione o genero do filme- \n'
         }
 
-        if(filme.imgFilme==='img/'){
+        if(filme.imgFilme==='img/' && this.editar == null){
            msg+='-selecione uma imagem para o filme- \n'
         }
 
@@ -112,7 +110,6 @@ class Filme{
         document.getElementById('generoFilme').value=''
         document.getElementById('imgFilme').value=''
         document.getElementById('btnSave').innerText='salvar';
-
         document.getElementById('destacar').classList.remove('invisible');
         document.getElementById('labelDestacar').classList.remove('invisible');
         document.getElementById('labelImgFilme').innerText="Selecione a imagem do filme"
@@ -182,6 +179,7 @@ class Filme{
         let catalogo=document.getElementById('catalogo')
 //executa função que forma os links de navegação 
         usuario.verificaPermissao()
+
 //muda exibição da home caso não tenha nehum filme adicionado
          if(listaFilmes.length==0){
              document.getElementById("sessaoDestaque").innerText='nenhum filme foi adicionado';
@@ -189,23 +187,23 @@ class Filme{
         }
  
         let destaques=document.getElementById('destaques')
-//lista os  destaques
+//lista os  destaques na home
         listaFilmesDestaque.forEach(destaque=>{
                let dadoFilme=JSON.stringify(destaque)
                let link=document.createElement('a');
-               link.href='pages/infoFilme.html?obj='+dadoFilme;
+               link.href='pages/infoFilme.html?id='+destaque.id;
                link.innerHTML=`<img class="cartaz cartaz-destaque" src="${destaque.imgFilme}" alt=${destaque.nomeFilme}">`
                destaques.appendChild(link)
                
         });
  
 
-//  lista todos
+//  lista todos os filmes na home
         
             listaFilmes.forEach(filme => {
                let dadoFilme=JSON.stringify(filme)
                let link=document.createElement('a');
-               link.href='pages/infoFilme.html?obj='+dadoFilme;
+               link.href='pages/infoFilme.html?id='+filme.id;
                link.innerHTML=`<img class="cartaz" src="${filme.imgFilme}" alt=${filme.nomeFilme}">`
                catalogo.appendChild(link)
            });
@@ -215,17 +213,19 @@ class Filme{
     lerDadosFilme(){
         usuario.verificaPermissao()
         const urlParams = new URLSearchParams(window.location.search);
-        const dadoFilme = JSON.parse(urlParams.get('obj'));
-        
+        const id = urlParams.get('id');
+        let dadoFilme=''
+        this.filmes.forEach(filme=>{
+            if(filme.id==id){
+                dadoFilme=filme  
+            }
+        })
         
         let nomeFilme=document.getElementById('nomeFilme')
         let sinopse=document.getElementById('sinopse')
         let classificacao=document.getElementById('classificacao')
         let genero=document.getElementById('genero')
         let imgFilme=document.getElementById('cartazFilme')
-    
-
-
         imgFilme.src='../'+dadoFilme.imgFilme;
         nomeFilme.innerText=dadoFilme.nomeFilme;
         sinopse.innerText=dadoFilme.sinopse;
@@ -241,8 +241,9 @@ class Filme{
         document.getElementById('sinopseFilme').value=dados.sinopse;
         document.getElementById('classificacaoFilme').value=dados.classificacao;
         document.getElementById('generoFilme').value=dados.generoFilme;
-        document.getElementById('labelImgFilme').innerText="por favor,selecione a imagem novamente"
-
+        
+        document.getElementById('labelImgFilme').classList.add('invisible')
+        document.getElementById('imgFilme').classList.add('invisible')
         document.getElementById('destacar').classList.add('invisible');
         document.getElementById('labelDestacar').classList.add('invisible');
         document.getElementById('tituloForm').innerText='ATUALIZAR FILME';
@@ -250,7 +251,6 @@ class Filme{
 
 
     atualizarFilme(id,filmeAt){
-        
         for(let i =0;i<this.filmes.length;i++){
             if(this.filmes[i].id===id){
                 this.atualizarSessao(this.filmes[i].nomeFilme,filmeAt.nomeFilme)
@@ -258,7 +258,6 @@ class Filme{
                 this.filmes[i].sinopse=filmeAt.sinopse
                 this.filmes[i].generoFilme=filmeAt.generoFilme
                 this.filmes[i].classificacao=filmeAt.classificacao
-                this.filmes[i].imgFilme=filmeAt.imgFilme
             }
         }
 
@@ -275,7 +274,6 @@ class Filme{
                     this.filmesDestaque[i].sinopse=filmeAt.sinopse
                     this.filmesDestaque[i].generoFilme=filmeAt.generoFilme
                     this.filmesDestaque[i].classificacao=filmeAt.classificacao
-                    this.filmesDestaque[i].imgFilme=filmeAt.imgFilme
                 }
                 this.atualizaLocalStorage();
                 this.limparCampos();  
@@ -286,8 +284,10 @@ class Filme{
         
         for (let i = 0; i < this.filmes.length; i++) {
             if(this.filmes[i].id === id){
+              if(window.confirm('deseja excluir o filme'+this.filmes[i].nomeFilme+'?')){ 
                  this.excluirSessao(this.filmes[i].nomeFilme)
-                 this.filmes.splice(i,1)  
+                 this.filmes.splice(i,1)
+                 }
              }
           
         }

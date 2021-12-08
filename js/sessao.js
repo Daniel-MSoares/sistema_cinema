@@ -34,7 +34,7 @@ class Sessao{
       objSessao.idSessao=this.id;
       objSessao.filmeSessao=document.getElementById("filmeSessao").value
       objSessao.horarioSessao=document.getElementById("horarioSessao").value
-      objSessao.dataSessao=document.getElementById("dataSessao").value
+      objSessao.dataSessao=document.getElementById("dataSessao").value.split('-').reverse().join('/')
       objSessao.salaSessao=document.getElementById("salaSessao").value
       objSessao.idiomaSessao=document.getElementById("idiomaSessao").value
       objSessao.precoIngresso=parseFloat(document.getElementById("precoIngresso").value).toFixed(2)

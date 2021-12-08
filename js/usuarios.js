@@ -101,8 +101,6 @@ class Usuario{
         }else if((msg==='Senha incorreta')){
             document.getElementById('mensagem').innerText=msg
             document.getElementById('mensagem').classList.remove('invisible')
-            
-            // alert(msg)
         }else{
            if(permissao=='user'){
             window.location.href='usuario.html'
@@ -140,7 +138,7 @@ class Usuario{
                 linkAdmin.innerHTML='<a href="pages/admin.html" class="mr-2 nav-link"><i class="far fa-user"> </i> ADMIN</a>'
                 
                 if(document.getElementById('nav')!==null){
-                document.getElementById('nav').appendChild(linkAdmin);
+                  document.getElementById('nav').appendChild(linkAdmin);
                 }           
             }
 
