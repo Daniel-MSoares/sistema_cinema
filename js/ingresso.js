@@ -86,7 +86,9 @@ class Ingresso{
        console.log(ingresso)
        this.mostrarCadeiras()
        this.id++
-       whindow.location.href='usuario.html'
+
+       if(confirm('Ver em meus Ingressos')){
+       window.location.href='usuario.html'}
    }
 
    validacampos(ingresso){
@@ -310,7 +312,7 @@ class Ingresso{
                 </p>
                </div>
                <div class="col-md-2 btnIngresso">
-                    <button onclick='console.log("${ingresso.codigoIngresso}")'class="btn btn-success">Ver Codigo</button>
+                    <button onclick='verQrCode("${ingresso.codigoIngresso}")'class="btn btn-success">Ver Codigo</button>
                   </div> 
                `
                areaIngressos.appendChild(elmIngresso)

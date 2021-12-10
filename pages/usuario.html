@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- js -->
     
+    <script src="../libs/qrcode.min.js"></script>
     <script src="../js/usuarios.js"></script>
     <script src="../js/ingresso.js"></script>
+
+    
 </head>
 <body class="page" onload="usuario.verificaPermissao()">
    
@@ -51,9 +54,12 @@
                   usuario.exibeDadosUsuario()
              </script>
             <hr style="border:2px solid red">
-
-          
             <section >
+              <div id='codigo' class="col-md 12 invisible">
+                <h4 id='stringCodigo'></h4>
+                <div id='QrCode'></div>
+                <button onclick="fechaDivCodigo()">X</button>
+              </div>
               <button  onclick='ingresso.exibirMeusIngressos()' id="btnMostraMeusIngressos" class="btn btn-success mb-3" >Ver Meus Ingressos</button>
               <div id='areaIngressos'>
                  <!-- prenchida dinamicamente -->
@@ -67,6 +73,22 @@
     <footer class="footer">
       L&DCINE!-PROJETO FINAL CURSO RESULTUP!-2021<br>DANIEL MUNIZ/LETÍCIA BARROS &COPY
     </footer>
+    <script>
+        
+      function verQrCode(codigo){
+        document.getElementById('codigo').classList.remove('invisible')
+        window.scrollTo(0,0)
+        document.getElementById('QrCode').innerHTML=''
+        document.getElementById('stringCodigo').innerText = "--"+codigo+"--"
+        new QRCode(document.getElementById('QrCode'),{text:codigo,
+          correctLevel:QRCode.CorrectLevel.H})
+      }
+      function fechaDivCodigo(){
+        document.getElementById('codigo').classList.add('invisible')
+      }
+
+   </script>
+    
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

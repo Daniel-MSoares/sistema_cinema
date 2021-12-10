@@ -197,6 +197,41 @@ footer{
     align-items: center;
 }
 
+
+    #codigo{
+        width: 100%;
+        margin: 0 auto;
+        align-items: center;
+        padding-bottom:10px;
+        border: 2px solid red;
+        background: rgb(250, 124, 124);
+    } 
+
+    @media screen and (min-width : 900px){ 
+        #codigo{
+           width: 30%;
+           align-items: center;
+           margin-bottom:10px;
+           border: 2px solid red;
+           padding: 10px;
+           background: rgb(250, 124, 124);
+         } 
+       } 
+
+
+#QrCode{
+    padding: 30px;
+    margin: 0 auto; 
+}
+
+#stringCodigo{
+    font-weight: normal;
+    border-top:2px solid red;
+    border-bottom:2px solid red;
+    border-color: red;
+    text-align: center;
+    background: #000;
+}
 /* estilo pagina ingresso*/
 .dados-ingresso{
     border-bottom:2px  solid red ;

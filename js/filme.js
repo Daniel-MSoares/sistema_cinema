@@ -139,7 +139,7 @@ class Filme{
             let td_acao=tr.insertCell();
             td_acao.innerHTML=`<button onClick='filme.preparaAtualizar(${dadoFilme})' ><i class='fas fa-edit'></i>Editar</button>||
             <button onClick='filme.excluirFilme(${filme.id})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button> ||
-            <button ><i class='fas fa-info-circle'></i><a href='infoFilme.html?obj=${dadoFilme}'>detalhes</a></button>`
+            <button ><i class='fas fa-info-circle'></i><a href='infoFilme.html?id=${filme.id}'>detalhes</a></button>`
            });
         // cria tabela de Destaques
         
@@ -148,7 +148,8 @@ class Filme{
             let td_id=tr.insertCell().innerText=destaque.id;
             let td_nome=tr.insertCell().innerText=destaque.nomeFilme;
             let td_acao=tr.insertCell();
-            td_acao.innerHTML=`<button onClick='filme.excluirDestaque(${destaque.id})'> <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button>`
+            td_acao.innerHTML=`<button onClick='filme.excluirDestaque(${destaque.id})'>
+                    <i style='color:red;'class='fas fa-trash-alt'></i>Excluir</button>`
            });
 
          //insere os valores do select para o form sessao nome filme
