@@ -16,59 +16,59 @@ class Ingresso{
             { 
               id:1,
               nome:'Pipoca Grande',
-              img:'https://via.placeholder.com/200',
+              img:'../img/imgProdutos/pipocaGrande.jpg',
               preco:4.00,
               quantidade:0
             },
             {
               id:2,
               nome:'Pipoca média',
-              img:'https://via.placeholder.com/200',
+              img:'../img/imgProdutos/pipocaMedia.jpg',
               preco:3.00,
               quantidade:0
             },
             {
               id:3,
               nome:'Pipoca pequena',
-              img:'https://via.placeholder.com/200',
+              img:'../img/imgProdutos/pipocaPequena.jpg',
               preco:2.00,
               quantidade:0
             },
             {
               id:4,
-              nome:'Pipoca Doce(250g)',
-              img:'https://via.placeholder.com/200',
-              preco:4.00,
+              nome:'M&MS(45g)',
+              img:'../img/imgProdutos/m&ms.jpg',
+              preco:2.00,
               quantidade:0
             },
             {   
-                id:5,
-                nome:'refrigerante(450ml)',
-                img:'https://via.placeholder.com/200',
-                preco:7.00,
-                quantidade:0
+              id:5,
+              nome:'refrigerante(350ml)',
+              img:'../img/imgProdutos/refrigerante.jpg',
+              preco:7.00,
+              quantidade:0
             },
             {   
-                id:6,
-                nome:'água(500ml com gás)',
-                img:'https://via.placeholder.com/200',
-                preco:3.50,
-                quantidade:0
-              },
-              {   
-                id:7,
-                nome:'água(500ml sem gás)',
-                img:'https://via.placeholder.com/200',
-                preco:3.00,
-                quantidade:0
-              },
-              {   
-                id:8,
-                nome:'mentos(37.5g)',
-                img:'https://via.placeholder.com/200',
-                preco:2.50,
-                quantidade:0
-              }
+              id:6,
+              nome:'água(500ml com gás)',
+              img:'../img/imgProdutos/AguaComGas.jpg',
+              preco:3.50,
+              quantidade:0
+            },
+            {   
+              id:7,
+              nome:'água(500ml sem gás)',
+              img:'../img/imgProdutos/AguaSemGas.jpg',
+              preco:3.00,
+              quantidade:0
+            },
+            {   
+              id:8,
+              nome:'mentos(37.5g)',
+              img:'../img/imgProdutos/mentos.jpg',
+              preco:2.50,
+              quantidade:0
+            }
           ]
     }
    comprarIngresso(){
@@ -100,6 +100,10 @@ class Ingresso{
             msg+='Selecione o seu assento\n'
         }else if(ingresso.cadeiras.length<ingresso.qtdIngressos  ){
             msg+='Por Favor,escolha uma cadeira para cada Ingresso\n'
+        }
+
+        if(!document.getElementById('cobrarNaEntrada').checked && !document.getElementById('pagarComPix').checked){
+            msg+='Por favor,escolha uma forma de pagamento\n'
         }
         if(msg !== ''){
             alert(msg)
@@ -211,6 +215,11 @@ class Ingresso{
         objIngresso.descricao=this.geraTextoDescricao()
         objIngresso.cadeiras=this.cadeiras
         objIngresso.codigoIngresso=this.gerarCodigoIngresso()
+        if(document.getElementById('cobrarNaEntrada').checked){
+            objIngresso.formadepagamento="Cobrar Na Entrada"
+        }else{
+            objIngresso.formadepagamento="PIX"
+        }
         objIngresso.valorFinal=this.total
         return objIngresso
     }
@@ -295,7 +304,8 @@ class Ingresso{
         let qtdIngresso=0
         let areaIngressos=document.getElementById('areaIngressos')
         areaIngressos.innerHTML=''
-        this.ingressos.forEach(ingresso=>{
+        let ingressos=this.ingressos.reverse()
+        ingressos.forEach(ingresso=>{
             
             if(ingresso.idcliente===usuario.usuarioLogado.id){ 
                 let elmIngresso=document.createElement('div')
@@ -307,6 +317,7 @@ class Ingresso{
                  Cadeiras:[${ingresso.cadeiras}]<br>
                  filme: ${ingresso.nomefilme}(R$ ${ingresso.precoIngresso} - ${ingresso.idiomafilme})<br>
                  pedido:<br>${ingresso.descricao}<br>
+                 Pagamento:${ingresso.formadepagamento}<br>
                  código: ${ingresso.codigoIngresso}<br>
                  total:${ingresso.valorFinal} 
                 </p>
@@ -328,6 +339,7 @@ class Ingresso{
     }
 
     pesquisarIngresso(codigo){
+        document.getElementById('divScanner').classList.add('invisible')
         let dadosIngresso=document.getElementById('dadosIngresso')
         dadosIngresso.innerHTML=''
         let ingressoExiste =''
@@ -344,20 +356,29 @@ class Ingresso{
                     Cadeiras:[${ingresso.cadeiras}]<br>
                     filme: ${ingresso.nomefilme}(R$ ${ingresso.precoIngresso} - ${ingresso.idiomafilme})<br>
                     pedido:<br>${ingresso.descricao}<br>
+                    Pagamento:${ingresso.formadepagamento} <br>
                     código: ${ingresso.codigoIngresso}<br>
-                    total:${ingresso.valorFinal}       
+                    total:${ingresso.valorFinal}   
                    </p>
                    </div>
                    <div class="col-md-2 btnIngresso">
                     <button onclick='ingresso.excluirIngresso("${ingresso.id}")'class="btn btn-danger">Rasgar Ingresso</button>
                   </div> 
                `
+               let elmMSG=document.createElement('span')
+               if(ingresso.formadepagamento!=='PIX'){
+                elmMSG.innerHTML='<h2>OBS:Receber pagamento</h2>'
+                elmIngresso.appendChild(elmMSG)
+               }else{
+                elmMSG.innerHTML='<h2>OBS:Exigir Recibo</h2>'
+                elmIngresso.appendChild(elmMSG)
+               }
                dadosIngresso.appendChild(elmIngresso)
                 ingressoExiste = 1
               }
           });
           if(ingressoExiste !== 1){
-            dadosIngresso.innerHTML="<h1 style='text-aling:center;'>Código Não Encontrado</h1>"
+            dadosIngresso.innerHTML="<h1>Código Não Encontrado</h1>"
           }
     }
 

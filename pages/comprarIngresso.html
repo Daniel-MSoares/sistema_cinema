@@ -83,15 +83,14 @@
             </div>
 
             <h2 style="text-align: center;">Forma de pagamento:</h2>
-            <input type='checkbox' id='cobrarNaEntrada' name='cobrarNaEntrada'>
-            <label for="cobrarNaEntrada">Pagar na Entrada</label><br>
+            <input type='radio' id='cobrarNaEntrada' name='formaPagamento' value='cobrarNaEntrada' onchange="verificaMeiodePagamento()">
+            <label>Pagar na Entrada</label><br>
             
-            <button class="btn ">pagar com PIX</button>
+            <input type='radio' id="pagarComPix" name='formaPagamento' value='pagarComPix' onchange="verificaMeiodePagamento()">
+            <label>Pagar com Pix</label><br>
             <div id='pagamento'>
 
             </div>
-
-
           </div>
           <button id="btnFinalizar" class="btn btn-success ml-3 mt-2" onclick="ingresso.comprarIngresso()">Finalizar
             Compra</button>
@@ -102,6 +101,23 @@
     </div>
   </section>
   <script>
+  function verificaMeiodePagamento(){
+   if(document.getElementById('pagarComPix').checked){
+    document.getElementById('pagamento').innerHTML='<h3 style:"text-align:cente">:( Pagamento por Pix Indisponivel no momento</h3>'
+    document.getElementById('cobrarNaEntrada').checked=true
+   }else{
+    document.getElementById('pagamento').innerHTML=''
+   }
+}
+
+
+
+
+
+
+
+
+
     if (usuario.usuarioLogado == null) {
       document.getElementById('btnFinalizar').disabled = true;
       document.getElementById('avisoAdministrador').innerText = 'Por Favor,Faça login para continuar'

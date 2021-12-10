@@ -175,7 +175,7 @@ class Filme{
        }
 
     listarFilmesHome(){
-        let listaFilmes=this.filmes
+        let listaFilmes=this.filmes.reverse()
         let listaFilmesDestaque=this.filmesDestaque
         let catalogo=document.getElementById('catalogo')
 //executa função que forma os links de navegação 

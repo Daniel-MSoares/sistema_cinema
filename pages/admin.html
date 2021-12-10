@@ -189,11 +189,14 @@
         <button class="btn btn-primary pesquisar" onclick='ingresso.pesquisarIngresso(campoCodigoIngresso.value)'>
             <i class="fas fa-search"></i>
         </button>
-        <button class="btn btn-primary pesquisar" onclick='console.log(campoCodigoIngresso.value)'>
+        <button class="btn btn-primary pesquisar" onclick='lerQrCode()'>
             <i class="fas fa-qrcode"></i>
         </button><br>
-            <video cass="invisible" id="webcan"></video>
-        
+            
+           <div id='divScanner' class="invisible">
+            <video  id="webcan"></video><br>
+            <span id='msgErroCamera' class='msgErroCamera' style="Color:white"></span>
+          </div>
             <div id='dadosIngresso'>
             </div>
         </div>
@@ -272,20 +275,26 @@
     </section>
 
     <script>
+function lerQrCode(){
+    document.getElementById('dadosIngresso').innerHTML=''
+    document.getElementById('divScanner').classList.remove('invisible')
         const scanner = new Instascan.Scanner({
             video:document.getElementById('webcan')
         })
        scanner.addListener('scan',conteudo=>{
         ingresso.pesquisarIngresso(conteudo)
+        
        })
        Instascan.Camera.getCameras().then(camera=>{
            console.log(camera)
            if (camera.lenght > 0){
                scanner.start(camera[0])
            }else{
-               console.log('nenhuma camera identificada')
+             document.getElementById('msgErroCamera').innerText='*Nenhuma Camera Encontrada'
+             
            }
        })
+    }
 
     </script>
 
