@@ -193,7 +193,7 @@
             <i class="fas fa-qrcode"></i>
         </button><br>
             
-           <div id='divScanner'>
+           <div id='divScanner' class="invisible">
             <video id="webcan">
 
             </video><br>
@@ -279,21 +279,22 @@
     <script>
 function lerQrCode(){
     document.getElementById('dadosIngresso').innerHTML=''
-    // document.getElementById('divScanner').classList.remove('invisible')
+    document.getElementById('divScanner').classList.remove('invisible')
         const scanner = new Instascan.Scanner({
             video: document.getElementById('webcan')
         })
        scanner.addListener('scan',conteudo=>{
            alert(conteudo)
-        // ingresso.pesquisarIngresso(conteudo)
+         ingresso.pesquisarIngresso(conteudo)
        })
        Instascan.Camera.getCameras().then(cameras=>{
+           console.log(cameras)
            if (cameras.length > 0){
-               scanner.start(cameras[1])}
-        //    }else{
-        //      document.getElementById('msgErroCamera').innerText='*Nenhuma Camera Encontrada'
+               scanner.start(cameras[1])
+            }else{
+              document.getElementById('msgErroCamera').innerText='*Nenhuma Camera Encontrada'
              
-        //    }
+            }
        })
     }
 
