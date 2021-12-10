@@ -286,9 +286,9 @@ function lerQrCode(){
         
        })
        Instascan.Camera.getCameras().then(camera=>{
-           alert(camera[1].id)
+       
            if (camera.length > 0){
-               scanner.start(camera[1])
+               scanner.start(camera[0])
            }else{
              document.getElementById('msgErroCamera').innerText='*Nenhuma Camera Encontrada'
              
