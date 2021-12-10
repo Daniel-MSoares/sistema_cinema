@@ -284,16 +284,16 @@ function lerQrCode(){
             video: document.getElementById('webcan')
         })
        scanner.addListener('scan',conteudo=>{
-        ingresso.pesquisarIngresso(conteudo)
-        
+           alert(conteudo)
+        // ingresso.pesquisarIngresso(conteudo)
        })
-       Instascan.Camera.getCameras().then(camera=>{
-           if (camera.length > 0){
-               scanner.start(camera[1])
-           }else{
-             document.getElementById('msgErroCamera').innerText='*Nenhuma Camera Encontrada'
+       Instascan.Camera.getCameras().then(cameras=>{
+           if (cameras.length > 0){
+               scanner.start(cameras[1])}
+        //    }else{
+        //      document.getElementById('msgErroCamera').innerText='*Nenhuma Camera Encontrada'
              
-           }
+        //    }
        })
     }
 
