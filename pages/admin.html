@@ -19,6 +19,7 @@
     <script src="../js/sessao.js"></script>
     <script src="../js/usuarios.js"></script>
     <script src="../js/ingresso.js"></script>
+    <script src="../libs/instascan.min.js"></script>
     
 </head>
 
@@ -190,11 +191,10 @@
         </button>
         <button class="btn btn-primary pesquisar" onclick='console.log(campoCodigoIngresso.value)'>
             <i class="fas fa-qrcode"></i>
-        </button>
+        </button><br>
+            <video cass="invisible" id="webcan"></video>
         
             <div id='dadosIngresso'>
-                
-            
             </div>
         </div>
 <!-- Modal de validar Ingresso -->
@@ -270,6 +270,24 @@
             </div>
         </div>
     </section>
+
+    <script>
+        const scanner = new Instascan.Scanner({
+            video:document.getElementById('webcan')
+        })
+       scanner.addListener('scan',conteudo=>{
+        ingresso.pesquisarIngresso(conteudo)
+       })
+       Instascan.Camera.getCameras().then(camera=>{
+           console.log(camera)
+           if (camera.lenght > 0){
+               scanner.start(camera[0])
+           }else{
+               console.log('nenhuma camera identificada')
+           }
+       })
+
+    </script>
 
 
 

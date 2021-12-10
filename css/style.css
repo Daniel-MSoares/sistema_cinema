@@ -132,7 +132,12 @@ footer{
     
 }
 
-
+#webcan{
+    border:1px solid red;
+    width: 200px;
+    height: 200px;
+    margin: auto 0;
+}
 
 /* estilo pagina login */
 

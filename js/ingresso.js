@@ -330,6 +330,7 @@ class Ingresso{
     pesquisarIngresso(codigo){
         let dadosIngresso=document.getElementById('dadosIngresso')
         dadosIngresso.innerHTML=''
+        let ingressoExiste =''
           this.ingressos.forEach(ingresso=>{
               if(ingresso.codigoIngresso === codigo){
                   let elmIngresso=document.createElement('div')
@@ -352,8 +353,12 @@ class Ingresso{
                   </div> 
                `
                dadosIngresso.appendChild(elmIngresso)
+                ingressoExiste = 1
               }
-          })
+          });
+          if(ingressoExiste !== 1){
+            dadosIngresso.innerHTML="<h1 style='text-aling:center;'>Código Não Encontrado</h1>"
+          }
     }
 
     excluirIngresso(id){
