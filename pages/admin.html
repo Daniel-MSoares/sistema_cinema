@@ -282,13 +282,12 @@ function lerQrCode(){
     document.getElementById('divScanner').classList.remove('invisible')
         const scanner = new Instascan.Scanner({
             video: document.getElementById('webcan'),
-            scanPeriod:10,
             mirror:false
             
         })
        scanner.addListener('scan',conteudo=>{
          ingresso.pesquisarIngresso(conteudo)
-         
+         scanner.stop()
        })
        Instascan.Camera.getCameras().then(cameras=>{
            
