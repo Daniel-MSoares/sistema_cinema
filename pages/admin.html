@@ -283,6 +283,7 @@ function lerQrCode(){
         const scanner = new Instascan.Scanner({
             video: document.getElementById('webcan'),
             scanPeriod:10,
+            mirror:false
             
         })
        scanner.addListener('scan',conteudo=>{
