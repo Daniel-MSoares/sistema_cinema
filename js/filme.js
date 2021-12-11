@@ -114,8 +114,6 @@ class Filme{
         document.getElementById('labelDestacar').classList.remove('invisible');
         document.getElementById('labelImgFilme').innerText="Selecione a imagem do filme"
         document.getElementById('tituloForm').innerText='ADICIONAR NOVO TÍTULO';
-
-        
         this.editar=null
     
     }
@@ -242,7 +240,6 @@ class Filme{
         document.getElementById('sinopseFilme').value=dados.sinopse;
         document.getElementById('classificacaoFilme').value=dados.classificacao;
         document.getElementById('generoFilme').value=dados.generoFilme;
-        
         document.getElementById('labelImgFilme').classList.add('invisible')
         document.getElementById('imgFilme').classList.add('invisible')
         document.getElementById('destacar').classList.add('invisible');
@@ -285,7 +282,7 @@ class Filme{
         
         for (let i = 0; i < this.filmes.length; i++) {
             if(this.filmes[i].id === id){
-              if(window.confirm('deseja excluir o filme'+this.filmes[i].nomeFilme+'?')){ 
+              if(window.confirm('deseja excluir o filme '+this.filmes[i].nomeFilme+'?')){ 
                  this.excluirSessao(this.filmes[i].nomeFilme)
                  this.filmes.splice(i,1)
                  }

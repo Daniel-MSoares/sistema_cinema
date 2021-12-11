@@ -1,8 +1,9 @@
 body{
-    background: url('../img/bg-home.jpg')no-repeat;
+    background: #000 url('../img/bg-home.jpg') no-repeat;
     background-size: 100%;
     background-position-y: -25px;
     background-attachment: fixed;
+    
 }
 .page{
     background:rgba(0, 0, 0,.7);
@@ -91,7 +92,7 @@ footer{
    border: 2px solid red;
    
    margin: 0 auto;
-   color:red;
+   color:rgb(248, 247, 247);
    font-size: large;
 }
 

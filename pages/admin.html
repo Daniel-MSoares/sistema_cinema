@@ -81,6 +81,7 @@
             <button class="btn btn-success" id="btn-buscarIngresso" onClick="mostraBuscar()">VALIDAR INGRESSO</button>
 
             <h2 class="text-white text-center" id="tituloForm">Adicionar Novo Filme</h2>
+            <!-- formulario de cadastrar Filmes -->
             <div class="cadastroFilme " id="formFilme">
                 <form>
                     <div class="lineInput">
@@ -128,13 +129,14 @@
                         </select>
                     </div>
                     <div class="lineInput">
-                        <label id="labelImgFilme">Selecione a imagem do filme:('Diretorio img')</label>
+                        <label id="labelImgFilme">Selecione a imagem do filme:('Diretório do projeto /Img')</label>
                         <input type="file" id="imgFilme">
                     </div>
                 </form>
                 <button class="btn btn-success" id='btnSave' onclick="filme.salvar()">Salvar</button>
                 <button class="btn btn-warning" id='btnSave' onclick="filme.limparCampos()">Cancelar</button>
             </div>
+            <!-- formulario de cadastrar Sessões -->
             <div class="cadastroFilme invisible" id="formSessao">
                <form>
                 <div>
@@ -231,7 +233,8 @@
             <button onClick='mostrarFilmes()' class="btn btn-primary mr-2 mt-2">LISTA FILMES</button>
             <button onClick='mostrarDestaques()' class="btn btn-primary mr-2 mt-2">LISTA DESTAQUES</button>
             <button onClick='mostrarSessoes()' class="btn btn-primary mr-2 mt-2">TODAS AS SESSÕES</button>
-            
+           
+            <!-- lista de filmes em destaque -->
             <div id='tabela_Destaque' class="invisible">
                 <h2 class="text-white text-center">LISTA DE DESTAQUES</h2>
                 <table border=1 class="table" style="color: yellow;" >
@@ -244,6 +247,7 @@
                     </tbody> 
                 </table>
             </div>
+            <!-- lista de todos os filmes  -->
             <div id='tabela_filmes' class="invisible">
                 <h2 class="text-white text-center">LISTA DE FILMES</h2>
                 <table border=1 class="table" >
@@ -256,6 +260,8 @@
                     </tbody> 
                 </table>
             </div>
+
+            <!-- lista das sessões  -->
             <div id='tabela_Sessoes' class="invisible">
                 <h2 class="text-white text-center">Sessões</h2>
                 <table border=1 class="table" style="color: rgb(250, 250, 250);">
@@ -276,31 +282,30 @@
         </div>
     </section>
 
-    <script>
-function lerQrCode(){
-    document.getElementById('dadosIngresso').innerHTML=''
-    document.getElementById('divScanner').classList.remove('invisible')
-        const scanner = new Instascan.Scanner({
+<script>
+        function lerQrCode(){
+            document.getElementById('dadosIngresso').innerHTML=''
+            document.getElementById('divScanner').classList.remove('invisible')
+         //inicia a lib instascan
+            const scanner = new Instascan.Scanner({
             video: document.getElementById('webcan'),
             mirror:false
             
         })
-       scanner.addListener('scan',conteudo=>{
-         ingresso.pesquisarIngresso(conteudo)
-         scanner.stop()
+        scanner.addListener('scan',conteudo=>{
+          ingresso.pesquisarIngresso(conteudo)
+          scanner.stop()
        })
        Instascan.Camera.getCameras().then(cameras=>{
-           
-           if (cameras.length > 0){
-               scanner.start(cameras[1])
+           if (cameras.length > 0 && cameras[0].id!== '' ){
+                   scanner.start(cameras[1])//mudar indice da camera para mudar a camera iniciada(1 camera trazeira do celular)
             }else{
               document.getElementById('msgErroCamera').innerText='*Nenhuma Camera Encontrada'
-             
             }
        })
     }
 
-    </script>
+</script>
 
 
 

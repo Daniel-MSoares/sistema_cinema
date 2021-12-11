@@ -80,9 +80,10 @@
         window.scrollTo(0,0)
         document.getElementById('QrCode').innerHTML=''
         document.getElementById('stringCodigo').innerText = "--"+codigo+"--"
+        //inicia lib QRCodeJS
         new QRCode(document.getElementById('QrCode'),{text:codigo,
           correctLevel:QRCode.CorrectLevel.H})
-      }
+        }
       function fechaDivCodigo(){
         document.getElementById('codigo').classList.add('invisible')
       }
