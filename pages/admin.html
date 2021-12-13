@@ -297,10 +297,12 @@
           scanner.stop()
        })
        Instascan.Camera.getCameras().then(cameras=>{
-           if (cameras.length > 0 && cameras[0].id!== '' ){
-                   scanner.start(cameras[1])//mudar indice da camera para mudar a camera iniciada(1 camera trazeira do celular)
+           console.log(cameras)
+           if (cameras.length > 0){
+                   scanner.start(cameras[0])//mudar indice da camera para mudar a camera iniciada(1 camera trazeira do celular)
             }else{
               document.getElementById('msgErroCamera').innerText='*Nenhuma Camera Encontrada'
+              scanner.stop()
             }
        })
     }
