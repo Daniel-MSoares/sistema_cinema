@@ -183,12 +183,14 @@ class Filme{
          if(listaFilmes.length==0){
              document.getElementById("sessaoDestaque").innerText='nenhum filme foi adicionado';
              document.getElementById("sessaoCartaz").classList.add('invisible'); 
-        }
+         }else if(listaFilmesDestaque.length==0 && listaFilmes.length>0){
+            document.getElementById("sessaoDestaque").classList.add('invisible');
+         }
  
         let destaques=document.getElementById('destaques')
 //lista os  destaques na home
         listaFilmesDestaque.forEach(destaque=>{
-               let dadoFilme=JSON.stringify(destaque)
+               
                let link=document.createElement('a');
                link.href='pages/infoFilme.html?id='+destaque.id;
                link.innerHTML=`<img class="cartaz cartaz-destaque" src="${destaque.imgFilme}" alt=${destaque.nomeFilme}">`
