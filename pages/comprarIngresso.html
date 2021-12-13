@@ -88,12 +88,13 @@
             
             <input type='radio' id="pagarComPix" name='formaPagamento' value='pagarComPix' onchange="verificaMeiodePagamento()">
             <label>Pagar com Pix</label><br>
-            <div id='pagamento'>
-
+            <div id='pagamento' class="invisible">
+                  <small>*modelo Qrcode Pix</small><br>
+                 <img src="../img/QRCodedemo.svg" width="150" height="150">
             </div>
           </div>
-          <button id="btnFinalizar" class="btn btn-success ml-3 mt-2" onclick="ingresso.comprarIngresso()">Finalizar
-            Compra</button>
+          <button id="btnFinalizar" class="btn btn-success ml-3 mt-2" onclick="ingresso.comprarIngresso()">Reservar Ingresso
+            </button>
           <span id='avisoAdministrador' class='invisible' style="color:red;font-size: large;">Contas de Administradores
             não podem efetuar compras</span>
         </div>
@@ -103,10 +104,10 @@
   <script>
   function verificaMeiodePagamento(){
    if(document.getElementById('pagarComPix').checked){
-    document.getElementById('pagamento').innerHTML='<h3 style:"text-align:cente">:( Pagamento por Pix Indisponivel no momento</h3>'
-    document.getElementById('cobrarNaEntrada').checked=true
+    document.getElementById('pagamento').classList.remove('invisible')
+    
    }else{
-    document.getElementById('pagamento').innerHTML=''
+    document.getElementById('pagamento').classList.add('invisible')
    }
 }
 

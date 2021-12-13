@@ -202,7 +202,7 @@ class Filme{
 //  lista todos os filmes na home
         
             listaFilmes.forEach(filme => {
-               let dadoFilme=JSON.stringify(filme)
+               
                let link=document.createElement('a');
                link.href='pages/infoFilme.html?id='+filme.id;
                link.innerHTML=`<img class="cartaz" src="${filme.imgFilme}" alt=${filme.nomeFilme}">`
@@ -211,7 +211,7 @@ class Filme{
          
        }
 
-    lerDadosFilme(){
+    exibirDadosFilme(){
         usuario.verificaPermissao()
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');

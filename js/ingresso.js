@@ -370,7 +370,7 @@ class Ingresso{
                 elmMSG.innerHTML='<h2>OBS:Receber pagamento</h2>'
                 elmIngresso.appendChild(elmMSG)
                }else{
-                elmMSG.innerHTML='<h2>OBS:Exigir Recibo</h2>'
+                elmMSG.innerHTML='<h2>OBS:Exigir comprovante de pagamento Pix</h2>'
                 elmIngresso.appendChild(elmMSG)
                }
                dadosIngresso.appendChild(elmIngresso)
