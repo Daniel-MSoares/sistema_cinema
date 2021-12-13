@@ -94,8 +94,8 @@
           <input type="text" name='nomeUsuario' id='nomeUsuario' placeholder="Nome">
         </div>
         <div class="input">
-           <a href="#">Termos de uso</a><br>
-          <input type="checkbox" id='termos'>
+           <a hr ef="#"data-toggle="modal" data-target="#termosModal">Termos de uso</a><br>
+          <input type="checkbox" id='checktermos'>
           <label id="labelTermos" for="termos">Li e concordo com os Termos</label><br>
         </div>
 
@@ -119,6 +119,29 @@
 
    </script>
   </section>
+
+<!-- politica de privacidade -->
+<div class="modal fade" id="termosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Termos de uso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus tempore quae quisquam consectetur, minima nulla saepe, nisi quas explicabo aperiam amet, reprehenderit iure. Dignissimos totam nemo laudantium debitis at.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus tempore quae quisquam consectetur, minima nulla saepe, nisi quas explicabo aperiam amet, reprehenderit iure. Dignissimos totam nemo laudantium debitis at.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus tempore quae quisquam consectetur, minima nulla saepe, nisi quas explicabo aperiam amet, reprehenderit iure. Dignissimos totam nemo laudantium debitis at.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">fechar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

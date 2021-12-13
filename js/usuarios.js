@@ -46,7 +46,7 @@ class Usuario{
         if(usuario.nome===''){
             msg+='-Informe o seu Nome- \n'
         }
-        if(usuario.nome.length < 4){
+        if(usuario.nome!==''&& usuario.nome.length < 4){
             msg+='-Informe um nome com no minimo 4 caracteres- \n'
         }
         if(usuario.email===''){
@@ -55,10 +55,10 @@ class Usuario{
         if(usuario.senha===''){
             msg+='-Informe uma Senha- \n'
         }
-        if(usuario.senha.length < 6){
+        if(usuario.senha!=='' && usuario.senha.length < 6){
             msg+='-Senha deve conter no minimo 6 dígitos- \n'
         } 
-        if(document.getElementById('termos').checked===false){
+        if(document.getElementById('checktermos').checked===false){
             msg+='-Leia e aceite os termos de uso- \n'
         }
         
