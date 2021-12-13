@@ -376,10 +376,13 @@ class Ingresso{
                dadosIngresso.appendChild(elmIngresso)
                 ingressoExiste = 1
               }
+
           });
           if(ingressoExiste !== 1){
             dadosIngresso.innerHTML="<h1>Código Não Encontrado</h1>"
+
           }
+          
     }
 
     excluirIngresso(id){
