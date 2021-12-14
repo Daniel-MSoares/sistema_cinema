@@ -112,7 +112,8 @@ class Filme{
         document.getElementById('btnSave').innerText='salvar';
         document.getElementById('destacar').classList.remove('invisible');
         document.getElementById('labelDestacar').classList.remove('invisible');
-        document.getElementById('labelImgFilme').innerText="Selecione a imagem do filme"
+        document.getElementById('labelImgFilme').classList.remove('invisible')
+        document.getElementById('imgFilme').classList.remove('invisible');
         document.getElementById('tituloForm').innerText='ADICIONAR NOVO TÍTULO';
         this.editar=null
     
