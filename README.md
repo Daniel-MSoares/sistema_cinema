@@ -9,10 +9,10 @@ para acessar o painel de administrador informe o usuario 'admin@admin.com' e a s
 por ele será possível adicionar,atualizar e excluir os filmes da página inicial,adicionar e remover sessões para cada filme, e por onde será possível validar os ingressos dos clientes
 
 obs:
-*para adicionar imagens,faça download da pasta img deste diretório,e no imput de seleção der imagem selecione apenas imagens deste diretório,pois o sistema não faz upload de imagem,nem possui um backend,
-o imput é usado apenas para descobrir o nome da imagem pelo atributo files[0].name do input type file,selecionar imagens que não estão nesse diretório não gerará um erro,apenas infromará que o arquivo não
-foi encontrado pelo atrubto src da tag img
-<br>*scanner de QRcode funciona apenas em servidores http e https(lib instascan.Js),se executar direto o arquivo index.html essa libpode não funcionar corretamente
+*para adicionar imagens,faça download da pasta img deste diretório,e no imput de seleção de imagem selecione apenas imagens deste diretório,pois o sistema não faz upload de imagem,nem possui um backend,
+o imput é usado apenas para descobrir o nome da imagem pelo atributo files[0].name do input type file,selecionar imagens que não estão nesse diretório não gerará um erro,apenas informará que o arquivo não
+foi encontrado pelo atributo src da tag img
+<br>*scanner de QRcode funciona apenas em servidores http e https(lib instascan.Js),se executar direto o arquivo index.html essa lib pode não funcionar corretamente
 
 
 //cliente
