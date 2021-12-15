@@ -5,7 +5,7 @@ Projeto final Result-UP,dos alunos Daniel Muniz e Letícia Barros,sistema de ven
  
 
 ## Administrador
-para acessar o painel de administrador informe o usuario 'admin@admin.com' e a senha 'admin123',e o painel de administrador será apresentado,
+para acessar o painel de administrador informe o usuario '*admin@admin.com*' e a senha '*admin123*',e o painel de administrador será apresentado,
 por ele será possível adicionar,atualizar e excluir os filmes da página inicial,adicionar e remover sessões para cada filme, e por onde será possível validar os ingressos dos clientes
 
 obs:
