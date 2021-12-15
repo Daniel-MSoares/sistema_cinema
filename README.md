@@ -4,7 +4,7 @@ Projeto final Result-UP,dos alunos Daniel Muniz e Letícia Barros,sistema de ven
  recursos usados:JavaScript,HTML,CSS,Bootstrap,LocalStorage(simulando banco de dados no frontend), LIBs QRCode.js e instascan.js(criador e scanner de QrCode)
  
 
-//Administrador
+## Administrador
 para acessar o painel de administrador informe o usuario 'admin@admin.com' e a senha 'admin123',e o painel de administrador será apresentado,
 por ele será possível adicionar,atualizar e excluir os filmes da página inicial,adicionar e remover sessões para cada filme, e por onde será possível validar os ingressos dos clientes
 
@@ -15,7 +15,7 @@ foi encontrado pelo atributo src da tag img
 <br>*scanner de QRcode funciona apenas em servidores http e https(lib instascan.Js),se executar direto o arquivo index.html essa lib pode não funcionar corretamente
 
 
-//cliente
+## cliente
 crie uma conta no sitema(os dados não precisam ser reais,ok),pela pagina de login,clicando em 'ainda não tenho conta',acesse o sistema fazebdo login com os dados de sua conta,
 e voce terá acesso à uma pagina onde será apresentado seus ingressos comprados,assim que você comprar um,clicando em algum filme da home(depois que o administrador adicionar o filme e as sessões)
 escolha a sessão,monte seu pedido,finalize a compra,volte na pagina de usuário, everá o seu ingresso,clique em ver código,e será apresentado um QRcode,que devera ser apresentado na entrada do 
