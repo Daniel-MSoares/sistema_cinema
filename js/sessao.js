@@ -134,7 +134,7 @@ class Sessao{
         });
         // console.log(sessoesFilme)
         if(sessoesFilme.length===0){
-            document.getElementById('tituloSessoes').innerText='Desculpe,não há sessões disponiveis,no momento,tente mais tarde!'
+            document.getElementById('tituloSessoes').innerText='Desculpe,não há sessões disponíveis,no momento,tente mais tarde!'
         }
         for(let i=0;i<sessoesFilme.length;i++){
             

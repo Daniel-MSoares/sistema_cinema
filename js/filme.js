@@ -182,7 +182,7 @@ class Filme{
 
 //muda exibição da home caso não tenha nehum filme adicionado
          if(listaFilmes.length==0){
-             document.getElementById("sessaoDestaque").innerText='nenhum filme foi adicionado';
+             document.getElementById("sessaoDestaque").innerText='nenhum filme disponível no momento';
              document.getElementById("sessaoCartaz").classList.add('invisible'); 
          }else if(listaFilmesDestaque.length==0 && listaFilmes.length>0){
             document.getElementById("sessaoDestaque").classList.add('invisible');
@@ -238,6 +238,8 @@ class Filme{
     
     preparaAtualizar(dados){
         this.editar=dados.id;
+        mostraForm("Filme")//chama a função que apresenta o formulário de cadastros de filme,caso esteja no de cadastrar sessão
+        document.getElementById('tituloForm').innerText='ATUALIZAR FILME';
         document.getElementById('nomeFilme').value=dados.nomeFilme;
         document.getElementById('btnSave').innerText='Atualizar';
         document.getElementById('sinopseFilme').value=dados.sinopse;
@@ -247,7 +249,7 @@ class Filme{
         document.getElementById('imgFilme').classList.add('invisible')
         document.getElementById('destacar').classList.add('invisible');
         document.getElementById('labelDestacar').classList.add('invisible');
-        document.getElementById('tituloForm').innerText='ATUALIZAR FILME';
+        
     }
 
 
