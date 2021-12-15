@@ -20,3 +20,9 @@ crie uma conta no sitema(os dados não precisam ser reais,ok),pela pagina de log
 e voce terá acesso à uma pagina onde será apresentado seus ingressos comprados,assim que você comprar um,clicando em algum filme da home(depois que o administrador adicionar o filme e as sessões)
 escolha a sessão,monte seu pedido,finalize a compra,volte na pagina de usuário, everá o seu ingresso,clique em ver código,e será apresentado um QRcode,que devera ser apresentado na entrada do 
 cinema,e será escaneado pelo funcionario,para lhe entragar seu pedido
+
+## Demonstração
+https://youtu.be/0atCXNgjAuI
+
+
+##### AD ASTRA ET ULTRA
